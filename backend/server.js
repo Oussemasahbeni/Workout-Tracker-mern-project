@@ -4,12 +4,14 @@ dotenv.config();
 import express from "express";
 import router from "./routes/workouts.js";
 import mongoose from "mongoose";
+import cors from "cors";
 
 // express app
 const app = express();
 const workoutRoutes = router;
 // middleware
 app.use(express.json());
+app.use(cors());
 
 app.use((req, res, next) => {
   console.log(req.path, req.method);
