@@ -1,17 +1,17 @@
-import { NavLink, Outlet } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 
 const Navbar = () => {
   return (
-    <div className="container">
-      <header>
+    <header>
+      <div className="container">
         <NavLink to="/">
           <h1>Workout Buddy</h1>
         </NavLink>
-      </header>
-      <main>
+      </div>
+    </header>
+    /* <main>
         <Outlet />
-      </main>
-    </div>
+      </main> */
   );
 };
 

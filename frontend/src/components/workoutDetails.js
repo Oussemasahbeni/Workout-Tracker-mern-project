@@ -2,6 +2,7 @@ import axios from "axios";
 import { useWorkoutContext } from "../hooks/useWorkoutContext";
 import formatDistanceToNow from "date-fns/formatDistanceToNow";
 
+// we get the workout as a prop from the parent component
 const WorkoutDetails = ({ workout }) => {
   const { dispatch } = useWorkoutContext();
   const handleClick = async () => {

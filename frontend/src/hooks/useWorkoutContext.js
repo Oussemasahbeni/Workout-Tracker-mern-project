@@ -11,6 +11,6 @@ export const useWorkoutContext = () => {
       "useWorkoutsContext must be used inside a WorkoutsContextProvider"
     );
   }
-
+  // the context object contains the state and dispatch function
   return context;
 };
