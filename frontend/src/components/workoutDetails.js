@@ -1,13 +1,24 @@
 import axios from "axios";
 import { useWorkoutContext } from "../hooks/useWorkoutContext";
 import formatDistanceToNow from "date-fns/formatDistanceToNow";
+import { useAuthContext } from "../hooks/useAuthContext";
 
 // we get the workout as a prop from the parent component
 const WorkoutDetails = ({ workout }) => {
   const { dispatch } = useWorkoutContext();
+  const { user } = useAuthContext();
+
   const handleClick = async () => {
+    if (!user) {
+      return;
+    }
     const response = await axios.delete(
-      `http://localhost:4000/api/workouts/${workout._id}`
+      `http://localhost:4000/api/workouts/${workout._id}`,
+      {
+        headers: {
+          Authorization: `Bearer ${user.token}`,
+        },
+      }
     );
     const result = response.data;
 

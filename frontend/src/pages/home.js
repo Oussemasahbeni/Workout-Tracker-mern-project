@@ -1,23 +1,27 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
 import { useWorkoutContext } from "../hooks/useWorkoutContext";
+import { useAuthContext } from "../hooks/useAuthContext";
 // component
 import WorkoutDetails from "../components/workoutDetails";
 import WorkoutForm from "../components/workoutForm";
 
 const Home = () => {
-  // const [workouts, setWorkouts] = useState([]);
   const { workouts, dispatch } = useWorkoutContext();
   const [error, setError] = useState(null);
+  const { user } = useAuthContext();
 
   useEffect(() => {
     const fetchWorkouts = async () => {
       try {
-        const response = await axios.get("http://localhost:4000/api/workouts");
+        const response = await axios.get("http://localhost:4000/api/workouts", {
+          headers: {
+            Authorization: `Bearer ${user.token}`,
+          },
+        });
         const result = response.data;
         if (response.status === 200) {
-          console.log(result);
-          // setWorkouts(result);
+          //console.log(result);
           dispatch({ type: "SET_WORKOUTS", payload: result });
         }
       } catch (error) {
@@ -26,8 +30,10 @@ const Home = () => {
       }
     };
 
-    fetchWorkouts();
-  }, [dispatch]);
+    if (user) {
+      fetchWorkouts();
+    }
+  }, [dispatch, user]);
   return (
     <div className="home">
       <div className="workouts">

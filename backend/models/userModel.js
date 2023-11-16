@@ -19,6 +19,7 @@ const userSchema = new Schema(
 
 //static signup method
 
+// we use statics because we want to create a method on the model itself and not on the instance of the model
 userSchema.statics.signup = async function (email, password) {
   //!validation
 
@@ -32,8 +33,8 @@ userSchema.statics.signup = async function (email, password) {
   }
   // testing if password is strong enough
   if (!validator.isStrongPassword(password)) {
-    throw new Error(
-      "Password is not strong enough, please enter a password with at least 8 characters, 1 uppercase letter, 1 lowercase letter, 1 number and 1 symbol"
+    throw Error(
+      "Password is not strong enough, please enter a stronger password"
     );
   }
   // this === model, we use this because we didnt create a model yet
@@ -51,6 +52,23 @@ userSchema.statics.signup = async function (email, password) {
 
   const user = await this.create({ email, password: hashedPassword });
 
+  return user;
+};
+
+//static login method
+userSchema.statics.login = async function (email, password) {
+  if (!email || !password) {
+    throw new Error("Email and password are required");
+  }
+  const user = await this.findOne({ email });
+  console.log("email found");
+  if (!user) {
+    throw new Error("Incorrect email");
+  }
+  const match = await bcrypt.compare(password, user.password);
+  if (!match) {
+    throw new Error("Incorrect password");
+  }
   return user;
 };
 

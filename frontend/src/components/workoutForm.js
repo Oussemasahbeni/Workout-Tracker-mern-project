@@ -1,8 +1,7 @@
 import axios from "axios";
 import { useState } from "react";
-
 import { useWorkoutContext } from "../hooks/useWorkoutContext";
-
+import { useAuthContext } from "../hooks/useAuthContext";
 const WorkoutForm = () => {
   const { dispatch } = useWorkoutContext();
   const [title, setTitle] = useState("");
@@ -10,16 +9,27 @@ const WorkoutForm = () => {
   const [reps, setReps] = useState("");
   const [error, setError] = useState(null);
   const [emptyFields, setEmptyFields] = useState([]); // we need to keep track of the empty fields so that we can display the error message
+  const { user } = useAuthContext();
 
   const handleSubmit = async (e) => {
     e.preventDefault(); // prevent page refresh on form submission and  Prevent the default form submission behavior
 
+    if (!user) {
+      setError("Please login to add a workout");
+      return;
+    }
+    console.log(user.token);
     const workout = { title, load, reps };
 
     try {
       const response = await axios.post(
         "http://localhost:4000/api/workouts",
-        workout
+        workout,
+        {
+          headers: {
+            Authorization: `Bearer ${user.token}`,
+          },
+        }
       );
       const result = response.data;
       //   if (!response.success) {
