@@ -89,7 +89,11 @@ input {
   margin-bottom: 20px;
   width: 100%;
   border: 1px solid #ddd;
-  border-radius: 4px;
+  background-color: #e8f0fe;
+  border-color: #2f6a87;
+  border-radius: 12px;
+  line-height: 24px;
+  text-align: start;
   box-sizing: border-box;
 }
 form button {
@@ -133,10 +137,69 @@ nav button {
 }
 
 /* auth forms */
-form.signup, form.login {
-  max-width: 400px;
+.form-container {
+  max-width: 450px;
   margin: 40px auto;
   padding: 20px;
   background: #fff;
-  border-radius: 4px;
+  border-radius: 12px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.form-container h3{
+  font-size: 32px;
+  line-height: 38px;
+  color: #183153;
+  text-align: left;
+  letter-spacing: normal;
+  font-weight: 600;
+}
+
+.form-container label {
+  margin-bottom: 8px;
+}
+.form-container .password-input {
+  width: 100%;
+}
+.form-container .input-container {
+  width: 100%;
+  margin-bottom: 16px; /* Adjust as needed */
+}
+
+.form-container .signup-button {
+  width: 100%;
+  color: #183153;
+  background-color: #ffdf6b;
+  border-radius: 8px;
+  font-size: 16px;
+  line-height: 24px;
+  text-align: center;
+  border-color: #183153;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.form-container .signup-button:hover {
+  background-color: #ffdf6b;
+  border-color: #183153;
+  color: #183153;
+}
+.form-container .signup-button span{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-weight: 600;
+}
+
+
+.check-login{
+  position: relative;
+  left:20%;
+}
+.check-icon{
+  position: relative;
+  left: 25%;
 }

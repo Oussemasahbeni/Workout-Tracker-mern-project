@@ -1,5 +1,8 @@
 import { useState } from "react";
 import { useLogin } from "../hooks/useLogin";
+import { Password } from "primereact/password";
+import { InputText } from "primereact/inputtext";
+import { Button } from "primereact/button";
 
 const Login = () => {
   const [email, setEmail] = useState("");
@@ -11,25 +14,40 @@ const Login = () => {
   };
   return (
     <form className="login" onSubmit={handleClick}>
-      <h3>Login</h3>
-      <label>Email:</label>
-      <input
-        type="email"
-        onChange={(e) => {
-          setEmail(e.target.value);
-        }}
-        value={email}
-      />
-      <label>Password:</label>
-      <input
-        type="password"
-        onChange={(e) => {
-          setPassword(e.target.value);
-        }}
-        value={password}
-      />
-      <button disabled={isLoading}>Login</button>
-      {error && <div className="error">{error}</div>}
+      <div className="form-container">
+        <h3>Login to Your Account</h3>
+        <div className="input-container">
+          <label>
+            <span className="pi pi-user"></span> Email:
+          </label>
+          <InputText
+            type="email"
+            onChange={(e) => setEmail(e.target.value)}
+            value={email}
+          />
+        </div>
+        <div className="input-container">
+          <label>
+            <span className="pi pi-lock"></span> Password:
+          </label>
+          <Password
+            type="password"
+            className="password-input"
+            onChange={(e) => setPassword(e.target.value)}
+            value={password}
+            toggleMask
+            feedback={false}
+          />
+        </div>
+        <Button
+          disabled={isLoading}
+          className="signup-button"
+          icon="pi pi-sign-in check-login"
+        >
+          <span>Login</span>
+        </Button>
+        {error && <div className="error">{error}</div>}
+      </div>
     </form>
   );
 };

@@ -20,14 +20,33 @@ const Navbar = () => {
           {user && (
             <div>
               <span>{user.email}</span>
-              <button onClick={handleClick}>Log Out</button>
+
+              <button onClick={handleClick}>
+                <span
+                  style={{ marginRight: 5 }}
+                  className="pi pi-sign-out"
+                ></span>
+                Log Out
+              </button>
             </div>
           )}
 
           {!user && (
             <div>
-              <NavLink to="/login">Login</NavLink>
-              <NavLink to="/signup">Signup</NavLink>
+              <NavLink to="/login">
+                <span
+                  style={{ marginRight: 5 }}
+                  className="pi pi-sign-in"
+                ></span>
+                Login
+              </NavLink>
+              <NavLink to="/signup">
+                <span
+                  style={{ marginRight: 5 }}
+                  className="pi pi-sign-in"
+                ></span>
+                Signup
+              </NavLink>
             </div>
           )}
         </nav>
