@@ -56,6 +56,8 @@ export const createWorkout = async (req, res) => {
 export const updateWorkout = async (req, res) => {
   const { id } = req.params;
   const { title, load, reps } = req.body;
+
+  console.log(id, title, load, reps);
   try {
     if (!mongoose.Types.ObjectId.isValid(id))
       return res.status(400).json({ message: "Invalid workout ID" });

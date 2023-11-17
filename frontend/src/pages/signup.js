@@ -18,7 +18,7 @@ const Signup = () => {
     <form className="signup" onSubmit={handleClick}>
       <div className="form-container">
         <h3>Sign up to Your Account</h3>
-        <div className="input-container">
+        <div className="w-full mb-4">
           <label>
             <span className="pi pi-user"></span> Email:
           </label>
@@ -30,13 +30,13 @@ const Signup = () => {
             value={email}
           />
         </div>
-        <div className="input-container">
+        <div className="w-full mb-4">
           <label>
             <span className="pi pi-lock"></span> Password:
           </label>
           <Password
             type="password"
-            className="password-input"
+            className=" password w-full  m-0 p-0"
             onChange={(e) => {
               setPassword(e.target.value);
             }}
@@ -46,10 +46,10 @@ const Signup = () => {
         </div>
         <Button
           disabled={isLoading}
-          className="signup-button"
-          icon="pi pi-sign-in check-icon"
+          className="w-52 p-2 text-form_title bg-yellow-400 rounded-full text-lg flex items-center justify-center border-blue-500 border-4 text-center hover:bg-yellow-100"
+          icon="pi pi-sign-in relative right-2"
         >
-          <span>Sign Up</span>
+          <span className="font-semibold mr-2">Sign Up</span>
         </Button>
         {error && <div className="error"> {error}</div>}
       </div>
