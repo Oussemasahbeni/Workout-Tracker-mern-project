@@ -8,6 +8,7 @@ const Login = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const { login, isLoading, error } = useLogin();
+
   const handleClick = async (e) => {
     e.preventDefault();
     await login(email, password);
@@ -22,6 +23,7 @@ const Login = () => {
           </label>
           <InputText
             type="email"
+            placeholder="email@example.com"
             onChange={(e) => setEmail(e.target.value)}
             value={email}
           />
@@ -31,7 +33,7 @@ const Login = () => {
             <span className="pi pi-lock"></span> Password:
           </label>
           <Password
-            type="password"
+            placeholder="password"
             className="w-full "
             onChange={(e) => setPassword(e.target.value)}
             value={password}
@@ -39,6 +41,7 @@ const Login = () => {
             feedback={false}
           />
         </div>
+
         <Button
           disabled={isLoading}
           className="w-52 p-2 text-form_title bg-yellow-400 rounded-full text-lg flex items-center justify-center border-blue-500 border-4 text-center  hover:bg-yellow-100"

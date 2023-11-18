@@ -24,6 +24,7 @@ const Signup = () => {
           </label>
           <InputText
             type="email"
+            placeholder="email@example.com"
             onChange={(e) => {
               setEmail(e.target.value);
             }}
@@ -35,8 +36,8 @@ const Signup = () => {
             <span className="pi pi-lock"></span> Password:
           </label>
           <Password
-            type="password"
             className=" password w-full  m-0 p-0"
+            placeholder="password"
             onChange={(e) => {
               setPassword(e.target.value);
             }}
@@ -47,7 +48,7 @@ const Signup = () => {
         <Button
           disabled={isLoading}
           className="w-52 p-2 text-form_title bg-yellow-400 rounded-full text-lg flex items-center justify-center border-blue-500 border-4 text-center hover:bg-yellow-100"
-          icon="pi pi-sign-in relative right-2"
+          icon="pi pi-user-plus relative right-2"
         >
           <span className="font-semibold mr-2">Sign Up</span>
         </Button>

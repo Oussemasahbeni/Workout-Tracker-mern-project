@@ -29,6 +29,8 @@ app.use("/api/user", userRoutes);
 mongoose
   .connect(process.env.MONGO_URI, {
     dbName: process.env.DB_NAME,
+    useNewUrlParser: true,
+    useUnifiedTopology: true,
   })
   .then(() => {
     app.listen(process.env.PORT, () => {

@@ -2,6 +2,8 @@ import axios from "axios";
 import { useState } from "react";
 import { useWorkoutContext } from "../hooks/useWorkoutContext";
 import { useAuthContext } from "../hooks/useAuthContext";
+import { toast } from "react-toastify";
+
 const WorkoutForm = () => {
   const { dispatch } = useWorkoutContext();
   const [title, setTitle] = useState("");
@@ -11,6 +13,8 @@ const WorkoutForm = () => {
   const [emptyFields, setEmptyFields] = useState([]); // we need to keep track of the empty fields so that we can display the error message
   const { user } = useAuthContext();
 
+  const notify = () => toast.success("Workout added successfully!");
+
   const handleSubmit = async (e) => {
     e.preventDefault(); // prevent page refresh on form submission and  Prevent the default form submission behavior
 
@@ -18,7 +22,6 @@ const WorkoutForm = () => {
       setError("Please login to add a workout");
       return;
     }
-    console.log(user.token);
     const workout = { title, load, reps };
 
     try {
@@ -43,6 +46,7 @@ const WorkoutForm = () => {
         setLoad("");
         setReps("");
         setEmptyFields([]);
+        notify();
         dispatch({ type: "CREATE_WORKOUT", payload: result });
       }
     } catch (error) {
@@ -83,8 +87,7 @@ const WorkoutForm = () => {
         className={emptyFields.includes("reps") ? "error" : ""}
       />
       <button className="bg-primary text-white p-4 font-poppins rounded-lg cursor-pointer">
-        {" "}
-        Add Workout
+        <i className="pi  pi-plus"></i> Add Workout
       </button>
       {error && <div className="error">{error}</div>}
     </form>

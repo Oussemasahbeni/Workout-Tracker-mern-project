@@ -13,6 +13,11 @@ import Login from "./pages/login";
 import Signup from "./pages/signup";
 import EditWorkout from "./components/EditWorkout";
 
+import { ToastContainer } from "react-toastify";
+
+import "react-toastify/dist/ReactToastify.css";
+import NotFound from "./pages/notFound";
+
 // const Router = createBrowserRouter(
 //   createRoutesFromElements(
 //     <Route path="/" element={<Navbar />}>
@@ -22,6 +27,7 @@ import EditWorkout from "./components/EditWorkout";
 // );
 function App() {
   const { user } = useAuthContext();
+
   return (
     <div className="App bg-white m-0 font-Poppins">
       <PrimeReactProvider>
@@ -42,10 +48,12 @@ function App() {
                 element={!user ? <Signup /> : <Navigate to="/" />}
               />
               <Route path="/edit/:id" element={<EditWorkout />} />
+              <Route path="*" element={<NotFound />} />
             </Routes>
           </div>
         </BrowserRouter>
       </PrimeReactProvider>
+      <ToastContainer />
     </div>
   );
 }

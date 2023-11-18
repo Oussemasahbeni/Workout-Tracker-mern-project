@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { useWorkoutContext } from "../hooks/useWorkoutContext";
 import { useAuthContext } from "../hooks/useAuthContext";
+import { toast } from "react-toastify";
 
 const EditWorkout = ({ workout, onCloseDialog }) => {
   const { _id } = workout;
@@ -13,6 +14,9 @@ const EditWorkout = ({ workout, onCloseDialog }) => {
   const [reps, setReps] = useState("");
   const [error, setError] = useState(null);
 
+  const notify = () => {
+    toast.success("Workout edited successfully!");
+  };
   useEffect(() => {
     if (workout) {
       setTitle(workout.title);
@@ -47,6 +51,7 @@ const EditWorkout = ({ workout, onCloseDialog }) => {
         setTitle("");
         setLoad("");
         setReps("");
+        notify();
         console.log("Workout edited successfully:", response.data);
         dispatch({ type: "EDIT_WORKOUTS", payload: response.data });
 

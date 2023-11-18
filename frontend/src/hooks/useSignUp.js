@@ -1,12 +1,16 @@
 import axios from "axios";
 import { useState } from "react";
 import { useAuthContext } from "../hooks/useAuthContext";
+import { toast } from "react-toastify";
 
 export const useSignUp = () => {
   const [error, setError] = useState(null);
   const [isLoading, setIsLoading] = useState(null);
   const { dispatch } = useAuthContext();
 
+  const notify = () => {
+    toast.success("Signup Successful, Welcome!");
+  };
   const signup = async (email, password) => {
     setIsLoading(true);
     setError(null);
@@ -25,6 +29,7 @@ export const useSignUp = () => {
       if (response.status === 201) {
         setError(null);
         setIsLoading(false);
+        notify();
         // save the token in local storage
         localStorage.setItem("user", JSON.stringify(result));
         // update the dispatch

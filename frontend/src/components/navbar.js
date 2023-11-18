@@ -53,7 +53,7 @@ const Navbar = () => {
               <NavLink to="/signup">
                 <span
                   style={{ marginRight: 5 }}
-                  className="pi pi-sign-in"
+                  className="pi pi-user-plus"
                 ></span>
                 Signup
               </NavLink>

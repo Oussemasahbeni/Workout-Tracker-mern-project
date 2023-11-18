@@ -25,10 +25,13 @@
 label, input {
   @apply block;
 }
+.p-password-input{
 
+  @apply mb-4;
+}
 
 input {
-  @apply p-4 mt-4 mb-8 w-full border border-gray-300 bg-blue-100 border-blue-500 rounded-lg;
+  @apply p-3 mt-4 mb-8 w-full  border-blue-600 border-2 rounded-lg;
 }
 
 div.error {
@@ -38,11 +41,7 @@ input.error {
   @apply border border-error;
 }
 
-/* navbar */
-/* nav {
-  display: flex;
-  align-items: center;
-} */
+
 nav a, nav button {
   @apply ml-4;
 }
@@ -65,19 +64,14 @@ nav a, nav button {
 
 .form-container .input-container {
   width: 100%;
-  margin-bottom: 16px; /* Adjust as needed */
+  margin-bottom: 16px; 
 }
 
 
-/* .form-container .signup-button:hover {
-  background-color: #ffdf6b;
-  border-color: #183153;
-  color: #183153;
-} */
 
 
 .w-full .p-icon {
-  /* Add your styles here */
+ 
   @apply  text-xl relative bottom-3 
   
 }
