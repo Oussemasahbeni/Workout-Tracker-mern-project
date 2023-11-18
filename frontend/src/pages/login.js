@@ -3,21 +3,40 @@ import { useLogin } from "../hooks/useLogin";
 import { Password } from "primereact/password";
 import { InputText } from "primereact/inputtext";
 import { Button } from "primereact/button";
+import { NavLink } from "react-router-dom";
+import { GoogleLogin } from "@react-oauth/google";
+import { useLoginWithGoogle } from "../hooks/useLoginWithGoogle";
+import { Message } from "primereact/message";
 
 const Login = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const { login, isLoading, error } = useLogin();
+  const { loginWithGoogle, iserror } = useLoginWithGoogle();
+  const [googleError, setGoogleError] = useState(null);
+
+  const responseMessage = async (response) => {
+    await loginWithGoogle(response);
+  };
+
+  const errorMessage = (error) => {
+    if (error.error === "popup_closed_by_user") {
+      setGoogleError("You closed the Google sign in popup without signing in.");
+    } else {
+      setGoogleError("An error occurred while signing in with Google.");
+    }
+  };
 
   const handleClick = async (e) => {
     e.preventDefault();
     await login(email, password);
   };
   return (
-    <form className="login" onSubmit={handleClick}>
-      <div className="form-container">
+    <div className=" flex items-center justify-start bg-slate-100 border-8 border-blue-400 rounded-3xl mt-3 ">
+      <form className="form-container" onSubmit={handleClick}>
         <h3>Login to Your Account</h3>
-        <div className="w-full mb-4">
+        {error && <Message severity="error" text={error} />}
+        <div className=" input-container mb-4">
           <label>
             <span className="pi pi-user"></span> Email:
           </label>
@@ -28,7 +47,7 @@ const Login = () => {
             value={email}
           />
         </div>
-        <div className="w-full mb-4">
+        <div className=" input-container mb-4">
           <label>
             <span className="pi pi-lock"></span> Password:
           </label>
@@ -41,17 +60,33 @@ const Login = () => {
             feedback={false}
           />
         </div>
-
         <Button
           disabled={isLoading}
-          className="w-52 p-2 text-form_title bg-yellow-400 rounded-full text-lg flex items-center justify-center border-blue-500 border-4 text-center  hover:bg-yellow-100"
+          className="w-52 p-2 text-form_title shrink-0 bg-cyan-200 rounded-full text-lg flex items-center justify-center border-blue-500 border-4 text-center  hover:bg-violet-300"
           icon="pi pi-sign-in relative right-2"
         >
           <span className="font-semibold mr-2">Login</span>
         </Button>
-        {error && <div className="error">{error}</div>}
-      </div>
-    </form>
+
+        <div className="mt-4 ">
+          <span> OR SIGN IN WITH GOOGLE</span>
+          <GoogleLogin
+            className="bg-red ma"
+            onSuccess={responseMessage}
+            onError={errorMessage}
+            useOneTap
+            shape={"circle"}
+            theme={"filled_blue"}
+          />
+        </div>
+        <NavLink to="/signup" className="text-blue-500 hover:underline mt-3">
+          Don't have an account? Sign up here.
+        </NavLink>
+        {iserror && <div className="error">{iserror}</div>}
+        {googleError && <div className="error">{googleError}</div>}
+      </form>
+      <img className=" max-w-xl mr-20" src="/background.png" alt="" />
+    </div>
   );
 };
 

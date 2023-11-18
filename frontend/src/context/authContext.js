@@ -6,6 +6,8 @@ export const authReducer = (state, action) => {
   switch (action.type) {
     case "LOGIN":
       return { user: action.payload };
+    case "LOGIN_WITH_GOOGLE":
+      return { ...state, user: action.payload, isAuthenticated: true };
     case "LOGOUT":
       return { user: null };
 

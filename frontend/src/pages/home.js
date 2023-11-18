@@ -26,7 +26,7 @@ const Home = () => {
         const result = response.data;
 
         if (response.status === 200) {
-          console.log(result);
+          // console.log(result);
           dispatch({ type: "SET_WORKOUTS", payload: result });
           setLoading(false);
           setEmpty(false);

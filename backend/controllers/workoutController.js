@@ -6,7 +6,7 @@ export const getWorkouts = async (req, res) => {
   const user_id = req.user._id;
   try {
     const result = await WorkoutModel.find({ user_id }).sort({ createAt: -1 });
-    console.log(result);
+    // console.log(result);
     res.status(200).json(result);
   } catch (err) {
     console.log(err);

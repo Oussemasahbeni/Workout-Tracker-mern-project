@@ -11,8 +11,8 @@ const Navbar = () => {
 
   //console.log(user);
   return (
-    <header className="bg-header_bg">
-      <div className="container max-w-screen-2xl my-0 mx-auto py-2 px-4 flex items-center justify-between">
+    <header className="bg-header_bg border-b-2  border-black">
+      <div className="container max-w-screen-2xl my-0 mx-auto py-2 px-4 flex items-center justify-between ">
         <NavLink to="/" className="h-32">
           {/* <h1 className="title"> */}{" "}
           <img

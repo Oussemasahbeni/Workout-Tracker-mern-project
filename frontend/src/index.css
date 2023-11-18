@@ -35,10 +35,10 @@ input {
 }
 
 div.error {
-  @apply p-4 bg-red-200 border border-error text-error rounded-md my-5;
+  @apply p-4 bg-red-200 border border-error text-error rounded-md my-5  ;
 }
 input.error {
-  @apply border border-error;
+  @apply border border-error ;
 }
 
 
@@ -49,7 +49,9 @@ nav a, nav button {
 
 /* auth forms */
 .form-container {
- @apply max-w-xl mx-auto p-20 bg-slate-100 rounded-xl flex flex-col items-center
+  height: 640px;
+ @apply max-w-4xl    mx-auto p-20 m-8 ml-8 bg-violet-100  border-white border-2 rounded-3xl flex flex-col items-center
+ 
 }
 
 .form-container h3{
@@ -63,8 +65,8 @@ nav a, nav button {
 }
 
 .form-container .input-container {
-  width: 100%;
-  margin-bottom: 16px; 
+
+  @apply w-full mb-4
 }
 
 
@@ -72,7 +74,7 @@ nav a, nav button {
 
 .w-full .p-icon {
  
-  @apply  text-xl relative bottom-3 
+  @apply  text-xl relative bottom-2
   
 }
 

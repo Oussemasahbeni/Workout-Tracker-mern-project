@@ -1,6 +1,12 @@
 import { userModel } from "../models/userModel.js";
 import jwt from "jsonwebtoken";
 
+import { OAuth2Client } from "google-auth-library";
+
+const client = new OAuth2Client(
+  process.env.GOOGLE_CLIENT_ID,
+  process.env.GOOGLE_CLIENT_SECRET
+);
 // create a jwt token function
 const createToken = (_id) => {
   // sign takes 3 arguments , payload , secret , options, payload is the data we want to store in the token
@@ -31,4 +37,38 @@ export const signUpUser = async (req, res) => {
     console.log(error.message);
     res.status(500).json({ message: error.message });
   }
+};
+
+export const loginWithGoogle = async (req, res) => {
+  const id_token = req.body.response.credential;
+
+  const ticket = await client.verifyIdToken({
+    idToken: id_token,
+    audience: process.env.GOOGLE_CLIENT_ID,
+  });
+
+  const payload = ticket.getPayload();
+
+  console.log(payload);
+  const userid = payload["sub"];
+
+  // Find the user in your MongoDB database
+  let user = await userModel.findOne({ googleId: userid });
+
+  // If the user doesn't exist, create a new user
+  if (!user) {
+    user = new userModel({
+      googleId: userid,
+      email: payload.email,
+    });
+    await user.save();
+  }
+
+  // Create a JWT for the user
+  const token = createToken(user._id);
+
+  console.log(user.id, token);
+
+  // Send the JWT back to the client
+  res.json({ email: user.email, token });
 };

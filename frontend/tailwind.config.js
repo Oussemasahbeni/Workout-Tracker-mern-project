@@ -11,6 +11,7 @@ module.exports = {
         header: "#bc4123",
         header_bg: "#fff",
         form_title: "##183153",
+        cool_color: "##EAD6F6",
       },
       fontFamily: {
         Poppins: ["Poppins", "sans-serif"],
