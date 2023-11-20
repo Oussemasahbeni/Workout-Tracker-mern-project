@@ -11,11 +11,11 @@ export const useSignUp = () => {
   const notify = () => {
     toast.success("Signup Successful, Welcome!");
   };
-  const signup = async (email, password) => {
+  const signup = async (email, password, username) => {
     setIsLoading(true);
     setError(null);
 
-    const user = { email, password };
+    const user = { email, password, username };
     try {
       const response = await axios.post(
         "http://localhost:4000/api/user/signup",
@@ -42,5 +42,5 @@ export const useSignUp = () => {
     }
   };
 
-  return { signup, isLoading, error };
+  return { signup, isLoading, error, setError };
 };

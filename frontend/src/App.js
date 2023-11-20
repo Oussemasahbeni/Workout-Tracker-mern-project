@@ -27,7 +27,7 @@ function App() {
   const { user } = useAuthContext();
 
   return (
-    <div className="App bg-white m-0 font-Poppins">
+    <div className="App m-0 bg-slate-200 font-Poppins">
       <PrimeReactProvider>
         <BrowserRouter>
           <Navbar />

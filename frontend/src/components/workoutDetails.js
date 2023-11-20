@@ -8,7 +8,6 @@ import { useState } from "react";
 import EditWorkout from "./EditWorkout";
 import { useRef } from "react";
 import { ConfirmDialog } from "primereact/confirmdialog";
-import { confirmDialog } from "primereact/confirmdialog";
 import { Toast } from "primereact/toast";
 
 import "primereact/resources/themes/lara-light-indigo/theme.css";
@@ -17,10 +16,10 @@ const WorkoutDetails = ({ workout }) => {
   const { dispatch } = useWorkoutContext();
   const { user } = useAuthContext();
   const [visible, setVisible] = useState(false);
-
+  const [dialogVisible, setDialogVisible] = useState(false);
   const toast = useRef(null);
 
-  const accept = async () => {
+  const handleDelete = async () => {
     if (!user) {
       return;
     }
@@ -51,14 +50,17 @@ const WorkoutDetails = ({ workout }) => {
   };
 
   const handleClick = () => {
-    confirmDialog({
-      message: "Do you want to delete this record?",
-      header: "Delete Confirmation",
-      icon: "pi pi-info-circle",
-      acceptClassName: "p-button-danger",
-      accept,
-      reject,
-    });
+    setDialogVisible(true);
+  };
+
+  const handleAccept = async () => {
+    await handleDelete();
+    setDialogVisible(false);
+  };
+
+  const handleReject = () => {
+    reject();
+    setDialogVisible(false);
   };
 
   const handleEdit = () => {
@@ -74,7 +76,16 @@ const WorkoutDetails = ({ workout }) => {
   return (
     <div className="bg-header_bg rounded mx-auto my-5 p-5 relative shadow-md">
       <Toast ref={toast} />
-      <ConfirmDialog />
+      <ConfirmDialog
+        visible={dialogVisible}
+        onHide={() => setDialogVisible(false)}
+        message="Do you want to delete this workout?"
+        header="Delete Confirmation"
+        icon="pi pi-info-circle"
+        acceptClassName="p-button-danger"
+        accept={handleAccept}
+        reject={handleReject}
+      />
       <h4 className=" text-primary text-lg mb-3"> {workout.title}</h4>
       <p className="m-0, text-gray-700">
         <strong>Load(kg):</strong> {workout.load}
@@ -102,12 +113,12 @@ const WorkoutDetails = ({ workout }) => {
         )}
       </div>
 
-      <span
+      <Button
         className="material-symbols-outlined absolute top-4 right-4 cursor-pointer bg-gray-200 p-2 rounded-full text-gray-700"
         onClick={handleClick}
       >
         Delete
-      </span>
+      </Button>
       <Button
         className="material-symbols-outlined absolute top-16 right-4 cursor-pointer bg-gray-200 p-2 rounded-full text-gray-700"
         onClick={handleEdit}

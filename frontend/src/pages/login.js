@@ -32,8 +32,11 @@ const Login = () => {
     await login(email, password);
   };
   return (
-    <div className=" flex items-center justify-start bg-slate-100 border-8 border-blue-400 rounded-3xl mt-3 ">
-      <form className="form-container" onSubmit={handleClick}>
+    <div className=" flex items-center justify-start bg-white border-8 rounded-3xl mt-3 ">
+      <form
+        className="form-container  h-auto  max-w-4xl    mx-auto p-20 m-8 ml-8 bg-violet-100  border-white border-2 rounded-3xl flex flex-col items-center"
+        onSubmit={handleClick}
+      >
         <h3>Login to Your Account</h3>
         {error && <Message severity="error" text={error} />}
         <div className=" input-container mb-4">
@@ -62,7 +65,7 @@ const Login = () => {
         </div>
         <Button
           disabled={isLoading}
-          className="w-52 p-2 text-form_title shrink-0 bg-cyan-200 rounded-full text-lg flex items-center justify-center border-blue-500 border-4 text-center  hover:bg-violet-300"
+          className="w-52 p-2 text-form_title shrink-0 bg-sky-500 rounded-full text-lg flex items-center justify-center border-blue-500 border-4 text-center  hover:bg-violet-400"
           icon="pi pi-sign-in relative right-2"
         >
           <span className="font-semibold mr-2">Login</span>

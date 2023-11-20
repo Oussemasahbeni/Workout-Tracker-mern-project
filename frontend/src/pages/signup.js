@@ -11,7 +11,10 @@ import { Message } from "primereact/message";
 const Signup = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const { signup, error, isLoading } = useSignUp();
+  const [confirmPassword, setConfirmPassword] = useState("");
+  const [username, setUsername] = useState("");
+
+  const { signup, error, isLoading, setError } = useSignUp();
 
   const { loginWithGoogle, iserror } = useLoginWithGoogle();
   const [googleError, setGoogleError] = useState(null);
@@ -29,19 +32,37 @@ const Signup = () => {
   };
   const handleClick = async (e) => {
     e.preventDefault();
-    await signup(email, password);
+    if (password !== confirmPassword) {
+      setError("Passwords do not match");
+      return;
+    }
+    await signup(email, confirmPassword, username);
   };
 
   //console.log(isLoading);
   return (
-    <div className="flex items-center justify-start   bg-slate-100 border-8 border-blue-400 rounded-3xl mt-3">
-      <form className="form-container " onSubmit={handleClick}>
+    <div className="flex items-center justify-start bg-white border-8 rounded-3xl  ml-10 mt-2">
+      <form
+        className="form-container  w-3/6 mx-auto  p-6 m-2 ml-2 bg-violet-100 border-white border-2 rounded-3xl flex flex-col items-center "
+        onSubmit={handleClick}
+      >
         <h3>Sign up to Your Account</h3>
         {error && <Message severity="error" text={error} />}
 
         <div className=" input-container  mb-4">
           <label>
-            <span className="pi pi-user"></span> Email:
+            <span className="pi pi-user"></span> Username:
+          </label>
+          <InputText
+            type="text"
+            placeholder="Username"
+            onChange={(e) => {
+              setUsername(e.target.value);
+            }}
+            value={email}
+          />
+          <label>
+            <span className="pi pi-envelope"></span> Email:
           </label>
           <InputText
             type="email"
@@ -65,10 +86,22 @@ const Signup = () => {
             value={password}
             toggleMask
           />
+          <label>
+            <span className="pi pi-lock"></span> Confirm Password:
+          </label>
+          <Password
+            className=" password w-full  m-0 p-0"
+            placeholder="confirm password"
+            onChange={(e) => {
+              setConfirmPassword(e.target.value);
+            }}
+            value={confirmPassword}
+            toggleMask
+          />
         </div>
         <Button
           disabled={isLoading}
-          className="w-52 p-2 text-form_title shrink-0 bg-cyan-200 rounded-full text-lg flex items-center justify-center border-blue-500 border-4 text-center hover:bg-yellow-100"
+          className="w-52 p-2 text-form_title shrink-0  bg-sky-500  rounded-full text-lg flex items-center justify-center border-blue-500 border-4 text-center hover:bg-violet-400"
           icon="pi pi-user-plus relative right-2"
         >
           <span className="font-semibold mr-2">Sign Up</span>
