@@ -14,7 +14,7 @@ export const useLoginWithGoogle = () => {
   const loginWithGoogle = async (response) => {
     //console.log(response);
 
-    console.log(response);
+    // console.log(response);
     try {
       const result = await axios.post(
         "http://localhost:4000/api/user/auth/google",
@@ -23,12 +23,12 @@ export const useLoginWithGoogle = () => {
         }
       );
 
-      console.log(result);
+      // console.log(result.data);
       if (result.statusText === "OK") {
         setError(null);
         notify();
         // save the token in local storage
-        localStorage.setItem("user", JSON.stringify(result));
+        localStorage.setItem("user", JSON.stringify(result.data));
         // update the dispatch
         dispatch({ type: "LOGIN_WITH_GOOGLE", payload: result.data });
       }

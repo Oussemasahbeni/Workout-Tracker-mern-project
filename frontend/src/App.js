@@ -53,7 +53,7 @@ function App() {
           </div>
         </BrowserRouter>
       </PrimeReactProvider>
-      <ToastContainer />
+      <ToastContainer pauseOnHover={false} />
     </div>
   );
 }

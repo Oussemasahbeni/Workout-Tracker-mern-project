@@ -4,6 +4,7 @@ import mongoose from "mongoose";
 
 export const getWorkouts = async (req, res) => {
   const user_id = req.user._id;
+  console.log(user_id);
   try {
     const result = await WorkoutModel.find({ user_id }).sort({ createAt: -1 });
     // console.log(result);

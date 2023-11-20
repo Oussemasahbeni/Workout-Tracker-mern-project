@@ -78,3 +78,9 @@ nav a, nav button {
   
 }
 
+
+.p-confirm-dialog .p-confirm-dialog-message {
+ @apply p-5
+ 
+}
+

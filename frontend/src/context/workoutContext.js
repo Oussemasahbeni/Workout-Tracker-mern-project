@@ -5,7 +5,7 @@ export const WorkoutContext = createContext();
 
 // state is the current state of the application and action is the action we want to perform on the state
 export const workoutsReducer = (state, action) => {
-  console.log(state, action);
+  // console.log(state, action);
   switch (action.type) {
     case "SET_WORKOUTS":
       return {
@@ -47,7 +47,7 @@ export const workoutsReducer = (state, action) => {
 export const WorkoutContextProvider = ({ children }) => {
   const [state, dispatch] = useReducer(workoutsReducer, { workouts: null });
 
-  console.log("WorkoutContextProvider:", state);
+  //console.log("WorkoutContextProvider:", state);
   return (
     <WorkoutContext.Provider value={{ ...state, dispatch }}>
       {children}
