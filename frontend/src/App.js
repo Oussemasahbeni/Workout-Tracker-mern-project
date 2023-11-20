@@ -12,9 +12,7 @@ import Navbar from "./components/navbar";
 import Login from "./pages/login";
 import Signup from "./pages/signup";
 import EditWorkout from "./components/EditWorkout";
-
 import { ToastContainer } from "react-toastify";
-
 import "react-toastify/dist/ReactToastify.css";
 import NotFound from "./pages/notFound";
 

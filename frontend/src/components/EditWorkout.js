@@ -63,8 +63,8 @@ const EditWorkout = ({ workout, onCloseDialog }) => {
   };
 
   return (
-    <form onSubmit={handleSubmit} className="create p-14 rounded">
-      <h3 className="text-3xl text-center text-form_title rone71 font-semibold mb-5">
+    <form onSubmit={handleSubmit} className="create p-4 rounded">
+      <h3 className="text-3xl text-center text-form_title  font-semibold mb-5">
         Edit Workout
       </h3>
       <label> Exercise Title</label>

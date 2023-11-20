@@ -11,6 +11,7 @@ import { ConfirmDialog } from "primereact/confirmdialog";
 import { confirmDialog } from "primereact/confirmdialog";
 import { Toast } from "primereact/toast";
 
+import "primereact/resources/themes/lara-light-indigo/theme.css";
 // we get the workout as a prop from the parent component
 const WorkoutDetails = ({ workout }) => {
   const { dispatch } = useWorkoutContext();
@@ -49,7 +50,7 @@ const WorkoutDetails = ({ workout }) => {
     });
   };
 
-  const handleClick = async () => {
+  const handleClick = () => {
     confirmDialog({
       message: "Do you want to delete this record?",
       header: "Delete Confirmation",
@@ -65,7 +66,6 @@ const WorkoutDetails = ({ workout }) => {
       return;
     }
     setVisible(true);
-    //navigate(`/edit/${workout._id}`, { state: { workout } });
   };
 
   const handleCloseDialog = () => {
@@ -74,7 +74,7 @@ const WorkoutDetails = ({ workout }) => {
   return (
     <div className="bg-header_bg rounded mx-auto my-5 p-5 relative shadow-md">
       <Toast ref={toast} />
-      <ConfirmDialog className="p-7" />
+      <ConfirmDialog />
       <h4 className=" text-primary text-lg mb-3"> {workout.title}</h4>
       <p className="m-0, text-gray-700">
         <strong>Load(kg):</strong> {workout.load}
@@ -102,12 +102,12 @@ const WorkoutDetails = ({ workout }) => {
         )}
       </div>
 
-      <Button
+      <span
         className="material-symbols-outlined absolute top-4 right-4 cursor-pointer bg-gray-200 p-2 rounded-full text-gray-700"
         onClick={handleClick}
       >
         Delete
-      </Button>
+      </span>
       <Button
         className="material-symbols-outlined absolute top-16 right-4 cursor-pointer bg-gray-200 p-2 rounded-full text-gray-700"
         onClick={handleEdit}

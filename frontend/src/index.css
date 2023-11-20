@@ -7,12 +7,7 @@
 @tailwind utilities;
 
 
-*,
-*::before,
-*::after {
-  box-sizing: border-box;
-  margin: 0;
-  padding: 0;}
+
 
 
 /* homepage */
@@ -79,8 +74,25 @@ nav a, nav button {
 }
 
 
-.p-confirm-dialog .p-confirm-dialog-message {
- @apply p-5
- 
+
+.p-button.p-button-danger {
+  color: #ffffff;
+  background: #EF4444;
+  border: 1px solid #EF4444;
+  margin-left: 10px;
+  padding: 0.75rem 1rem;
+  font-size: 1rem;
+  /* transition: background-color 0.2s, color 0.2s, border-color 0.2s, box-shadow 0.2s; */
+  border-radius: 6px;
+}
+
+.p-button.p-button-text {
+  background-color: transparent;
+  color: #6366F1;
+  border-color: transparent;
+  padding: 0.75rem 1.25rem;
+  font-size: 1rem;
+  /* transition: background-color 0.2s, color 0.2s, border-color 0.2s, box-shadow 0.2s; */
+  border-radius: 6px;
 }
 

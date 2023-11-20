@@ -19,6 +19,9 @@ module.exports = {
       screens: {
         "2xl": "1400px",
       },
+      padding: {
+        0: "auto",
+      },
     },
   },
   plugins: ["prettier-plugin-tailwindcss"],
