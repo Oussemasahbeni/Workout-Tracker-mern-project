@@ -22,6 +22,9 @@ module.exports = {
       padding: {
         0: "auto",
       },
+      backgroundImage: (theme) => ({
+        background: "url('../public/backgroundimage.png')",
+      }),
     },
   },
   plugins: ["prettier-plugin-tailwindcss"],

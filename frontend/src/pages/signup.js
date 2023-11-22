@@ -59,7 +59,7 @@ const Signup = () => {
             onChange={(e) => {
               setUsername(e.target.value);
             }}
-            value={email}
+            value={username}
           />
           <label>
             <span className="pi pi-envelope"></span> Email:

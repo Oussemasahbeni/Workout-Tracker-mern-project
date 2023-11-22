@@ -8,7 +8,7 @@ const userSchema = new Schema(
   {
     email: { type: String, required: true, unique: true },
     password: { type: String },
-    userName: { type: String },
+    username: { type: String, required: true, unique: true },
     googleId: { type: String },
     age: { type: Number },
     weight: { type: Number },
@@ -18,10 +18,21 @@ const userSchema = new Schema(
   { timestamps: true }
 );
 
-//static signup method
+const isValidUsername = (username) => {
+  if (username.length < 5 || username.length > 20) {
+    return false;
+  }
 
+  const regex = /^[a-zA-Z0-9_-]+$/;
+  if (!regex.test(username)) {
+    return false;
+  }
+
+  return true;
+};
+//static signup method
 // we use statics because we want to create a method on the model itself and not on the instance of the model
-userSchema.statics.signup = async function (email, password) {
+userSchema.statics.signup = async function (email, password, username) {
   //!validation
 
   // test if email and password are provided
@@ -38,6 +49,17 @@ userSchema.statics.signup = async function (email, password) {
       "Password is not strong enough, please enter a stronger password"
     );
   }
+
+  if (!isValidUsername(username)) {
+    throw new Error("Username is not valid, please enter a valid username");
+  }
+
+  // testing if username already exists
+  const usernameExists = await this.findOne({ username });
+  if (usernameExists) {
+    throw new Error("User with this username already exists");
+  }
+
   // this === model, we use this because we didnt create a model yet
 
   // testing if email already exists
@@ -51,7 +73,7 @@ userSchema.statics.signup = async function (email, password) {
   // hash the password
   const hashedPassword = await bcrypt.hash(password, salt);
 
-  const user = await this.create({ email, password: hashedPassword });
+  const user = await this.create({ email, password: hashedPassword, username });
 
   return user;
 };
@@ -62,7 +84,7 @@ userSchema.statics.login = async function (email, password) {
     throw new Error("Email and password are required");
   }
   const user = await this.findOne({ email });
-  console.log("email found");
+ // console.log("email found");
   if (!user) {
     throw new Error("Incorrect email");
   }

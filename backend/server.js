@@ -27,7 +27,7 @@ app.use("/api/user", userRoutes);
 // connect to db
 
 mongoose
-  .connect(process.env.MONGO_URI, {
+  .connect(process.env.MONGO_URI_V2, {
     dbName: process.env.DB_NAME,
   })
   .then(() => {

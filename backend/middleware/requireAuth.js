@@ -19,7 +19,7 @@ const requireAuth = async (req, res, next) => {
   try {
     // returns the id of the user that is in the token
     const { _id } = jwt.verify(token, process.env.SECRET);
-    console.log(" verification id is : " + _id);
+    // console.log(" verification id is : " + _id);
     // console.log("id is : " + _id);
     // we get the user from the database and we add it to the request
     req.user = await userModel.findOne({ _id }).select("_id");

@@ -29,6 +29,7 @@ const Login = () => {
 
   const handleClick = async (e) => {
     e.preventDefault();
+    //console.log(email, password);
     await login(email, password);
   };
   return (

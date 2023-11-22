@@ -43,12 +43,14 @@ const Navbar = () => {
             alt="WorkoutBuddy"
           />
         </NavLink>
+
+        <NavLink to="/home"> {user && <div>Workouts</div>}</NavLink>
         <nav className="flex items-center">
           {user && (
             <div>
               <TieredMenu model={items} popup ref={menu} breakpoint="767px" />
               <Button
-                label={user.email}
+                label={user.username}
                 icon="pi pi-bars"
                 className="bg-white text-primary border-2 border-primary p-2 rounded-md  cursor-pointer text-base"
                 onClick={(e) => menu.current.toggle(e)}
@@ -77,6 +79,7 @@ const Navbar = () => {
                 ></span>
                 Login
               </NavLink>
+
               <NavLink to="/signup">
                 <span
                   style={{ marginRight: 5 }}

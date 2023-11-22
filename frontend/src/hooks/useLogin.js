@@ -22,7 +22,7 @@ export const useLogin = () => {
         user
       );
       const result = response.data;
-      console.log(result);
+      // console.log(result);
       //console.log(response);
 
       if (response.statusText === "OK") {

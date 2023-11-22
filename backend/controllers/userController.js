@@ -17,22 +17,25 @@ export const loginUser = async (req, res) => {
   //console.log("Email is " + email, "Password is " + password);
   try {
     const user = await userModel.login(email, password);
+    console.log(user);
     const token = createToken(user._id);
-    console.log("token is " + token);
-    res.status(200).json({ email, token });
+    // console.log("token is " + token);
+    res.status(200).json({ email, token, username: user.username });
   } catch (err) {
     res.status(500).json({ message: err.message });
   }
 };
 
 export const signUpUser = async (req, res) => {
-  const { email, password } = req.body;
+  const { email, password, username } = req.body;
+  console.log(username);
   try {
-    const user = await userModel.signup(email, password);
+    const user = await userModel.signup(email, password, username);
     // create a token
+    console.log(user);
     const token = createToken(user._id);
-    console.log("token is " + token);
-    res.status(201).json({ email, token });
+    // console.log("token is " + token);
+    res.status(201).json({ email, token, username });
   } catch (error) {
     console.log(error.message);
     res.status(500).json({ message: error.message });
@@ -41,6 +44,7 @@ export const signUpUser = async (req, res) => {
 
 export const loginWithGoogle = async (req, res) => {
   const id_token = req.body.response.credential;
+  // console.log(req.body.response);
 
   const ticket = await client.verifyIdToken({
     idToken: id_token,
@@ -60,6 +64,7 @@ export const loginWithGoogle = async (req, res) => {
     user = new userModel({
       googleId: userid,
       email: payload.email,
+      username: payload.name,
     });
     await user.save();
   }
@@ -67,8 +72,8 @@ export const loginWithGoogle = async (req, res) => {
   // Create a JWT for the user
   const token = createToken(user._id);
 
-  console.log(user.id, token);
+  //console.log(user.id, token);
 
   // Send the JWT back to the client
-  res.json({ email: user.email, token });
+  res.json({ email: user.email, token, username: user.username });
 };

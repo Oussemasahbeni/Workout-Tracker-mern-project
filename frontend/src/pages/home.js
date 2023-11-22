@@ -15,7 +15,6 @@ const Home = () => {
   const [loading, setLoading] = useState(false);
 
   useEffect(() => {
-    // console.log(workouts);
     const fetchWorkouts = async () => {
       try {
         const response = await axios.get("http://localhost:4000/api/workouts", {
@@ -26,7 +25,6 @@ const Home = () => {
         const result = response.data;
 
         if (response.status === 200) {
-          // console.log(result);
           dispatch({ type: "SET_WORKOUTS", payload: result });
           setLoading(false);
           setEmpty(false);

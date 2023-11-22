@@ -1,0 +1,271 @@
+
+     [
+      {
+        "name": "Barbell Curl",
+        "type": "strength",
+        "muscle": "biceps",
+        "equipment": "barbell",
+        "difficulty": "beginner"
+      },
+      {
+        "name": "Dumbbell Curl",
+        "type": "strength",
+        "muscle": "biceps",
+        "equipment": "dumbbell",
+        "difficulty": "beginner"
+      },
+      {
+        "name": "Hammer Curl",
+        "type": "strength",
+        "muscle": "biceps",
+        "equipment": "dumbbell",
+        "difficulty": "intermediate"
+      },
+      {
+        "name": "Concentration Curl",
+        "type": "isolation",
+        "muscle": "biceps",
+        "equipment": "dumbbell",
+        "difficulty": "intermediate"
+      },
+      {
+        "name": "EZ Bar Curl",
+        "type": "strength",
+        "muscle": "biceps",
+        "equipment": "EZ bar",
+        "difficulty": "intermediate"
+      },
+      {
+        "name": "Preacher Curl",
+        "type": "isolation",
+        "muscle": "biceps",
+        "equipment": "barbell",
+        "difficulty": "advanced"
+      },
+      {
+        "name": "Reverse Curl",
+        "type": "strength",
+        "muscle": "biceps",
+        "equipment": "barbell",
+        "difficulty": "intermediate"
+      },
+      {
+        "name": "Tricep Dips",
+        "type": "compound",
+        "muscle": "triceps",
+        "equipment": "bodyweight",
+        "difficulty": "intermediate"
+      },
+      {
+        "name": "Tricep Pushdown",
+        "type": "isolation",
+        "muscle": "triceps",
+        "equipment": "cable",
+        "difficulty": "beginner"
+      },
+      {
+        "name": "Overhead Tricep Extension",
+        "type": "isolation",
+        "muscle": "triceps",
+        "equipment": "dumbbell",
+        "difficulty": "intermediate"
+      },
+      {
+        "name": "Close-Grip Bench Press",
+        "type": "compound",
+        "muscle": "triceps",
+        "equipment": "barbell",
+        "difficulty": "intermediate"
+      },
+      {
+        "name": "Skull Crushers",
+        "type": "isolation",
+        "muscle": "triceps",
+        "equipment": "barbell",
+        "difficulty": "advanced"
+      },
+      {
+        "name": "Diamond Push-ups",
+        "type": "compound",
+        "muscle": "triceps",
+        "equipment": "bodyweight",
+        "difficulty": "beginner"
+      },
+      {
+        "name": "Tricep Kickbacks",
+        "type": "isolation",
+        "muscle": "triceps",
+        "equipment": "dumbbell",
+        "difficulty": "beginner"
+      },
+      {
+        "name": "Bench Press",
+        "type": "compound",
+        "muscle": "chest",
+        "equipment": "barbell",
+        "difficulty": "intermediate"
+      },
+      {
+        "name": "Dumbbell Flyes",
+        "type": "isolation",
+        "muscle": "chest",
+        "equipment": "dumbbell",
+        "difficulty": "intermediate"
+      },
+      {
+        "name": "Incline Bench Press",
+        "type": "compound",
+        "muscle": "chest",
+        "equipment": "barbell",
+        "difficulty": "intermediate"
+      },
+      {
+        "name": "Wrist Curls",
+        "type": "isolation",
+        "muscle": "forearms",
+        "equipment": "dumbbell",
+        "difficulty": "beginner"
+      },
+      {
+        "name": "Reverse Wrist Curls",
+        "type": "isolation",
+        "muscle": "forearms",
+        "equipment": "dumbbell",
+        "difficulty": "beginner"
+      },
+      {
+        "name": "Plate Pinch",
+        "type": "isolation",
+        "muscle": "forearms",
+        "equipment": "other",
+        "difficulty": "beginner"
+      },
+      {
+        "name": "Squats",
+        "type": "compound",
+        "muscle": "legs",
+        "equipment": "barbell",
+        "difficulty": "intermediate"
+      },
+      {
+        "name": "Deadlifts",
+        "type": "compound",
+        "muscle": "legs",
+        "equipment": "barbell",
+        "difficulty": "intermediate"
+      },
+      {
+        "name": "Leg Press",
+        "type": "compound",
+        "muscle": "legs",
+        "equipment": "machine",
+        "difficulty": "beginner"
+      },
+      {
+        "name": "Lunges",
+        "type": "compound",
+        "muscle": "legs",
+        "equipment": "dumbbell",
+        "difficulty": "intermediate"
+      },
+      {
+        "name": "Leg Curls",
+        "type": "isolation",
+        "muscle": "legs",
+        "equipment": "machine",
+        "difficulty": "beginner"
+      },
+      {
+        "name": "Calf Raises",
+        "type": "isolation",
+        "muscle": "legs",
+        "equipment": "machine",
+        "difficulty": "beginner"
+      },
+      {
+        "name": "Deadlifts",
+        "type": "compound",
+        "muscle": "back",
+        "equipment": "barbell",
+        "difficulty": "intermediate"
+      },
+      {
+        "name": "Pull-ups",
+        "type": "compound",
+        "muscle": "back",
+        "equipment": "bodyweight",
+        "difficulty": "intermediate"
+      },
+      {
+        "name": "Bent Over Rows",
+        "type": "compound",
+        "muscle": "back",
+        "equipment": "barbell",
+        "difficulty": "intermediate"
+      },
+      {
+        "name": "Lat Pulldowns",
+        "type": "isolation",
+        "muscle": "back",
+        "equipment": "cable",
+        "difficulty": "intermediate"
+      },
+      {
+        "name": "T-Bar Rows",
+        "type": "compound",
+        "muscle": "back",
+        "equipment": "T-bar",
+        "difficulty": "advanced"
+      },
+      {
+        "name": "Face Pulls",
+        "type": "isolation",
+        "muscle": "back",
+        "equipment": "cable",
+        "difficulty": "intermediate"
+      },
+      {
+        "name": "Overhead Press",
+        "type": "compound",
+        "muscle": "shoulders",
+        "equipment": "barbell",
+        "difficulty": "intermediate"
+      },
+      {
+        "name": "Dumbbell Shoulder Press",
+        "type": "compound",
+        "muscle": "shoulders",
+        "equipment": "dumbbell",
+        "difficulty": "intermediate"
+      },
+      {
+        "name": "Lateral Raises",
+        "type": "isolation",
+        "muscle": "shoulders",
+        "equipment": "dumbbell",
+        "difficulty": "beginner"
+      },
+      {
+        "name": "Front Raises",
+        "type": "isolation",
+        "muscle": "shoulders",
+        "equipment": "dumbbell",
+        "difficulty": "beginner"
+      },
+      {
+        "name": "Upright Rows",
+        "type": "isolation",
+        "muscle": "shoulders",
+        "equipment": "barbell",
+        "difficulty": "intermediate"
+      },
+      {
+        "name": "Face Pulls",
+        "type": "isolation",
+        "muscle": "shoulders",
+        "equipment": "cable",
+        "difficulty": "intermediate"
+      }
+    ]
+  
+  

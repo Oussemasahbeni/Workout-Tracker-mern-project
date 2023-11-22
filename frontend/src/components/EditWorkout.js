@@ -3,12 +3,13 @@ import axios from "axios";
 import { useWorkoutContext } from "../hooks/useWorkoutContext";
 import { useAuthContext } from "../hooks/useAuthContext";
 import { toast } from "react-toastify";
+import { InputText } from "primereact/inputtext";
 
 const EditWorkout = ({ workout, onCloseDialog }) => {
   const { _id } = workout;
   const { dispatch } = useWorkoutContext();
   const { user } = useAuthContext();
-
+  const [sets, setSets] = useState("");
   const [title, setTitle] = useState("");
   const [load, setLoad] = useState("");
   const [reps, setReps] = useState("");
@@ -22,6 +23,7 @@ const EditWorkout = ({ workout, onCloseDialog }) => {
       setTitle(workout.title);
       setLoad(workout.load);
       setReps(workout.reps);
+      setSets(workout.sets);
     }
   }, [workout]);
 
@@ -33,7 +35,9 @@ const EditWorkout = ({ workout, onCloseDialog }) => {
       return;
     }
 
-    const updatedWorkout = { title, load, reps };
+    const updatedWorkout = { title, load, reps, sets };
+
+    // console.log(updatedWorkout);
 
     try {
       const response = await axios.patch(
@@ -51,8 +55,9 @@ const EditWorkout = ({ workout, onCloseDialog }) => {
         setTitle("");
         setLoad("");
         setReps("");
+        setSets("");
         notify();
-        console.log("Workout edited successfully:", response.data);
+        // console.log("Workout edited successfully:", response.data);
         dispatch({ type: "EDIT_WORKOUTS", payload: response.data });
 
         onCloseDialog();
@@ -75,17 +80,23 @@ const EditWorkout = ({ workout, onCloseDialog }) => {
         onChange={(e) => setTitle(e.target.value)}
       />
       <label>Load (in kg):</label>
-      <input
+      <InputText
         type="number"
         onChange={(e) => setLoad(e.target.value)}
         value={load}
       />
 
       <label>Number of Reps:</label>
-      <input
+      <InputText
         type="number"
         onChange={(e) => setReps(e.target.value)}
         value={reps}
+      />
+      <label>Number of Sets:</label>
+      <InputText
+        type="number"
+        onChange={(e) => setSets(e.target.value)}
+        value={sets}
       />
       <button className="bg-primary text-white p-4 font-poppins rounded-lg cursor-pointer">
         Edit Workout

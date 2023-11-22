@@ -93,6 +93,9 @@ const WorkoutDetails = ({ workout }) => {
       <p className="m-0, text-gray-700">
         <strong>Reps:</strong> {workout.reps}
       </p>
+      <p className="m-0, text-gray-700">
+        <strong>Sets:</strong> {workout.sets}
+      </p>
       {/* <p className="m-0, text-gray-700">
         {formatDistanceToNow(new Date(workout.createdAt), { addSuffix: true })}
       </p> */}

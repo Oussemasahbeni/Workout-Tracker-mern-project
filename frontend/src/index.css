@@ -86,3 +86,19 @@ nav a, nav button {
   @apply text-red-500
 }
 
+.span_tag{
+
+    background-image: linear-gradient(to right,var(--tw-gradient-stops));
+    --tw-gradient-from: #7a76fc var(--tw-gradient-from-position);
+    --tw-gradient-to: rgba(122,118,252,0) var(--tw-gradient-to-position);
+    --tw-gradient-stops: var(--tw-gradient-from),var(--tw-gradient-to);
+    --tw-gradient-to: #61a4eb var(--tw-gradient-to-position);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent
+}
+.text-iso-gray {
+  --tw-text-opacity: 1;
+  color: rgb(71 84 103/var(--tw-text-opacity));
+}
+

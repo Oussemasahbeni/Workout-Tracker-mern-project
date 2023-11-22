@@ -15,6 +15,7 @@ export const useSignUp = () => {
     setIsLoading(true);
     setError(null);
 
+    //console.log(email, password, username);
     const user = { email, password, username };
     try {
       const response = await axios.post(
@@ -22,10 +23,6 @@ export const useSignUp = () => {
         user
       );
       const result = response.data;
-      // if (response.status === 500) {
-      //   setError(result.error.message);
-      //   setIsLoading(false);
-      // }
       if (response.status === 201) {
         setError(null);
         setIsLoading(false);
