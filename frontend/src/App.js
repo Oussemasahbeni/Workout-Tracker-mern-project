@@ -17,6 +17,7 @@ import "react-toastify/dist/ReactToastify.css";
 import NotFound from "./pages/notFound";
 import LandingPage from "./pages/landingPage";
 import Footer from "./components/footer";
+import BmiCalculator from "./components/BmiCalculator";
 
 // const Router = createBrowserRouter(
 //   createRoutesFromElements(
@@ -41,6 +42,10 @@ function App() {
                 element={<LandingPage />}
               />
               <Route path="/home" element={!user ? <Login /> : <Home />} />
+              <Route
+                path="/BMI"
+                element={!user ? <Login /> : <BmiCalculator />}
+              />
               <Route
                 path="/login"
                 element={!user ? <Login /> : <Navigate to="/home" />}

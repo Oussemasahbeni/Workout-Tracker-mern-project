@@ -44,7 +44,7 @@ export const signUpUser = async (req, res) => {
 
 export const loginWithGoogle = async (req, res) => {
   const id_token = req.body.response.credential;
-  // console.log(req.body.response);
+  console.log(req.body.response);
 
   const ticket = await client.verifyIdToken({
     idToken: id_token,

@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import axios from "axios";
 import { useWorkoutContext } from "../hooks/useWorkoutContext";
 import { useAuthContext } from "../hooks/useAuthContext";
@@ -73,10 +73,11 @@ const EditWorkout = ({ workout, onCloseDialog }) => {
         Edit Workout
       </h3>
       <label> Exercise Title</label>
-      <input
+      <InputText
         type="text"
         required
         value={title}
+        disabled
         onChange={(e) => setTitle(e.target.value)}
       />
       <label>Load (in kg):</label>

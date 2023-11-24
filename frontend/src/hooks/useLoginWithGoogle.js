@@ -12,7 +12,7 @@ export const useLoginWithGoogle = () => {
     toast.success("Login Successful, Welcome!");
   };
   const loginWithGoogle = async (response) => {
-    //console.log(response);
+    console.log(response);
 
     // console.log(response);
     try {

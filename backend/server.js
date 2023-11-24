@@ -4,6 +4,7 @@ dotenv.config();
 import express from "express";
 import workoutRouter from "./routes/workouts.js";
 import userRouter from "./routes/user.js";
+import calculateRouter from "./routes/calculations.js";
 import mongoose from "mongoose";
 import cors from "cors";
 
@@ -23,11 +24,12 @@ app.use((req, res, next) => {
 // routes
 app.use("/api/workouts", workoutRoutes);
 app.use("/api/user", userRoutes);
+app.use("/api/calculate", calculateRouter);
 
 // connect to db
 
 mongoose
-  .connect(process.env.MONGO_URI_V2, {
+  .connect(process.env.MONGO_URI, {
     dbName: process.env.DB_NAME,
   })
   .then(() => {

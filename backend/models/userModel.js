@@ -14,6 +14,12 @@ const userSchema = new Schema(
     weight: { type: Number },
     height: { type: Number },
     username: { type: String },
+    bmis: [
+      {
+        bmi: Number,
+        date: { type: Date, default: Date.now },
+      },
+    ],
   },
   { timestamps: true }
 );
@@ -84,7 +90,7 @@ userSchema.statics.login = async function (email, password) {
     throw new Error("Email and password are required");
   }
   const user = await this.findOne({ email });
- // console.log("email found");
+  // console.log("email found");
   if (!user) {
     throw new Error("Incorrect email");
   }

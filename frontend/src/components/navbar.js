@@ -44,8 +44,33 @@ const Navbar = () => {
           />
         </NavLink>
 
-        <NavLink to="/home"> {user && <div>Workouts</div>}</NavLink>
-        <nav className="flex items-center">
+        {user && (
+          <div className=" flex content-start">
+            <NavLink className={"mr-4"} to="/home">
+              <div className="bg-white text-primary border-l-2 border-black p-2   cursor-pointer text-base">
+                Workouts
+              </div>
+            </NavLink>
+            <NavLink className={"mr-4"} to="/BMI">
+              <div className="bg-white text-primary border-l-2  border-black p-2   cursor-pointer text-base">
+                BMI CALCULATOR
+              </div>
+            </NavLink>
+            <NavLink className={"mr-4"} to="/BMI">
+              <div className="bg-white text-primary border-l-2  border-black p-2  cursor-pointer text-base">
+                Protein intake
+              </div>
+            </NavLink>
+
+            <NavLink to="/BMI">
+              <div className="bg-white text-primary border-x-2  border-black p-2   cursor-pointer text-base">
+                One Rep Max Calculator
+              </div>
+            </NavLink>
+          </div>
+        )}
+
+        <nav className="flex items-center ">
           {user && (
             <div>
               <TieredMenu model={items} popup ref={menu} breakpoint="767px" />
