@@ -1,10 +1,13 @@
 import axios from "axios";
-import { InputText } from "primereact/inputtext";
 import { useRef, useState } from "react";
 import { useAuthContext } from "../hooks/useAuthContext";
 import { RadioButton } from "primereact/radiobutton";
 import { InputNumber } from "primereact/inputnumber";
 import { Toast } from "primereact/toast";
+import { Dialog } from "primereact/dialog";
+import { Button } from "primereact/button";
+import { Chart } from "primereact/chart";
+
 const BmiCalculator = () => {
   const toast = useRef(null);
   const { user } = useAuthContext();
@@ -15,6 +18,9 @@ const BmiCalculator = () => {
   const [bmi, setBmi] = useState("");
   const [bmiStatus, setBmiStatus] = useState("");
   const [error, setError] = useState(null);
+  const [visible, setVisible] = useState(false);
+  const [chartData, setChartData] = useState({});
+  const [chartOptions, setChartOptions] = useState({});
 
   const showInfo = (bmi, status) => {
     if (status === "Obese") {
@@ -22,7 +28,7 @@ const BmiCalculator = () => {
         severity: "warn",
         summary: "Your BMI is:",
         detail: bmi + ", " + status,
-        life: 8000,
+        life: 4000,
       });
       return;
     } else {
@@ -56,7 +62,39 @@ const BmiCalculator = () => {
         }
       );
 
-      console.log(response.data);
+      const bmiArray = response.data.bmis;
+      const bmiValues = bmiArray.map((entry) => entry.bmi);
+      const dates = bmiArray.map((entry) =>
+        new Date(entry.date).toLocaleDateString()
+      );
+      const data = {
+        labels: dates,
+        datasets: [
+          {
+            label: "BMI",
+            data: bmiValues,
+            backgroundColor: ["rgba(255, 159, 64, 0.2)"],
+            borderColor: [
+              "rgb(255, 159, 64)",
+              "rgb(75, 192, 192)",
+              "rgb(54, 162, 235)",
+              "rgb(153, 102, 255)",
+            ],
+            borderWidth: 3,
+          },
+        ],
+      };
+
+      const options = {
+        scales: {
+          y: {
+            beginAtZero: true,
+          },
+        },
+      };
+
+      setChartData(data);
+      setChartOptions(options);
 
       if (response.status === 200) {
         setError(null);
@@ -84,15 +122,11 @@ const BmiCalculator = () => {
         <InputNumber
           className="block"
           value={height}
-          // min={50} // Minimum height
-          // max={300} // Maximum height
           onChange={(e) => setHeight(e.value)}
         />
         <label>Please enter your Weight (in kg):</label>
         <InputNumber
           className="block"
-          // min={2} // Minimum weight
-          // max={500} // Maximum weight
           onChange={(e) => setWeight(e.value)}
           value={weight}
         />
@@ -136,10 +170,35 @@ const BmiCalculator = () => {
         <button className="bg-primary text-white p-4 font-poppins rounded-lg cursor-pointer">
           Submit
         </button>
+
         {bmi && (
           <div className="bg-slate-200 p-4 mt-2 rounded border-3">
             Your Bmi is: <span className="font-bold">{bmi} </span>, Your result
             suggests you are <span className="font-bold"> {bmiStatus}</span>
+            <Button
+              label="Show bmi chart"
+              type="button"
+              className="bg-lime-600 text-white p-1 font-poppins rounded-lg cursor-pointer"
+              icon="pi pi-external-link"
+              onClick={() => setVisible(true)}
+            />
+            <Dialog
+              header="Bmi History chart "
+              visible={visible}
+              style={{
+                width: "45vw",
+              }}
+              onHide={() => setVisible(false)}
+            >
+              <div className="card">
+                <Chart
+                  type="bar"
+                  data={chartData}
+                  options={chartOptions}
+                  style={{ width: "140%" }}
+                />
+              </div>
+            </Dialog>
           </div>
         )}
         {error && <div className="error">{error}</div>}

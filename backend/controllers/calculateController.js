@@ -38,5 +38,5 @@ export const calculateBMI = async (req, res) => {
     { new: true }
   );
 
-  return res.status(200).json({ bmi, bmiStatus });
+  return res.status(200).json({ bmi, bmiStatus, bmis: result.bmis });
 };

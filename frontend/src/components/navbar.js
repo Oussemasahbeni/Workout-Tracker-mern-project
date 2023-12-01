@@ -56,7 +56,7 @@ const Navbar = () => {
                 BMI CALCULATOR
               </div>
             </NavLink>
-            <NavLink className={"mr-4"} to="/BMI">
+           {/* <NavLink className={"mr-4"} to="/BMI">
               <div className="bg-white text-primary border-l-2  border-black p-2  cursor-pointer text-base">
                 Protein intake
               </div>
@@ -66,7 +66,7 @@ const Navbar = () => {
               <div className="bg-white text-primary border-x-2  border-black p-2   cursor-pointer text-base">
                 One Rep Max Calculator
               </div>
-            </NavLink>
+            </NavLink>*/}
           </div>
         )}
 

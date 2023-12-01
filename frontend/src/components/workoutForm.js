@@ -3,10 +3,8 @@ import { useState } from "react";
 import { useWorkoutContext } from "../hooks/useWorkoutContext";
 import { useAuthContext } from "../hooks/useAuthContext";
 import { toast } from "react-toastify";
-// import { useWorkoutApi } from "../hooks/useWorkoutApi";
+import { Dropdown } from "primereact/dropdown";
 import { CascadeSelect } from "primereact/cascadeselect";
-
-import { InputText } from "primereact/inputtext";
 
 import {
   bicepsExercises,
@@ -141,37 +139,42 @@ const WorkoutForm = () => {
           style={{ minWidth: "14rem" }}
         />
       </div>
-      {/* <label> Exercise Title</label>
-      <input
-        type="text"
-        required
-        value={title} // we need to set the value of the input to the state so that the state is updated as the user types
-        onChange={(e) => setTitle(e.target.value)} // we need to update the state as the user types so that the value of the input is updated
-        className={emptyFields.includes("title") ? "error" : ""}
-      />*/}
+
       <label>Load (in kg):</label>
-      <InputText
+      <Dropdown
         type="number"
         onChange={(e) => setLoad(e.target.value)}
         value={load}
-        className={emptyFields.includes("load") ? "error" : ""}
+        options={Array(50)
+          .fill()
+          .map((_, i) => (i + 1) * 2.5)}
+        placeholder="Select a load"
+        className={emptyFields.includes("load") ? "error w-full" : " w-full"}
       />
 
       <label>Number of Reps:</label>
-      <InputText
+      <Dropdown
         type="number"
         onChange={(e) => setReps(e.target.value)}
+        options={Array(30)
+          .fill()
+          .map((_, i) => i + 1)}
+        placeholder="Select number of reps"
         value={reps}
-        className={emptyFields.includes("reps") ? "error" : ""}
+        className={emptyFields.includes("load") ? "error w-full" : " w-full"}
       />
       <label>Number of Sets:</label>
-      <InputText
+      <Dropdown
         type="number"
         onChange={(e) => setSets(e.target.value)}
         value={sets}
-        className={emptyFields.includes("sets") ? "error" : ""}
+        options={Array(10)
+          .fill()
+          .map((_, i) => (i + 1) * 1)}
+        placeholder="Select number of sets"
+        className={emptyFields.includes("load") ? "error w-full" : " w-full"}
       />
-      <button className="bg-primary text-white p-4 font-poppins rounded-lg cursor-pointer ">
+      <button className="bg-primary text-white p-4 font-poppins rounded-lg cursor-pointer mt-3 ">
         <i className="pi  pi-plus"></i> Add Workout
       </button>
       {error && <div className="error">{error}</div>}
