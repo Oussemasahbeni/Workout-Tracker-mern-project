@@ -23,7 +23,7 @@ const WorkoutForm = () => {
   const [sets, setSets] = useState("");
   const [reps, setReps] = useState("");
   const [error, setError] = useState(null);
-  const [selectedWorkout, setSelectedWorkout] = useState(null);
+  const [selectedWorkout, setSelectedWorkout] = useState("");
   const [emptyFields, setEmptyFields] = useState([]);
   const { user } = useAuthContext();
 
@@ -79,7 +79,14 @@ const WorkoutForm = () => {
       return;
     }
 
-    const workout = { title: selectedWorkout.wname, load, reps, sets };
+    let workout;
+
+    if (!selectedWorkout && !load && !reps && !sets) {
+      setError("Please fill all the fields");
+    } else {
+      setError(null);
+      workout = { title: selectedWorkout.wname, load, reps, sets };
+    }
 
     try {
       const response = await axios.post(
@@ -116,12 +123,12 @@ const WorkoutForm = () => {
     }
   };
   return (
-    <form onSubmit={handleSubmit} className="create">
+    <form onSubmit={handleSubmit} className="create add-Form">
       <h3 className="text-3xl  text-form_title text-left font-semibold mb-5">
         Add a new Workout
       </h3>
 
-      {/* <label> Exercise Title</label> */}
+      <label className="block text-xl py-4"> Exercise Title</label>
       <div className="card flex content-center mb-5 ">
         <CascadeSelect
           inputId="cs-city"
@@ -134,13 +141,15 @@ const WorkoutForm = () => {
           optionGroupLabel="workoutName"
           optionGroupChildren={["exercises", "name"]}
           placeholder="Select a workout"
-          className="w-full "
+          // className="w-full "
           breakpoint="767px"
+          className={emptyFields.includes("title") ? "error w-full" : " w-full"}
           style={{ minWidth: "14rem" }}
+          data-testid="workout-select"
         />
       </div>
 
-      <label>Load (in kg):</label>
+      <label className="block text-xl py-4">Load (in kg):</label>
       <Dropdown
         type="number"
         onChange={(e) => setLoad(e.target.value)}
@@ -150,9 +159,10 @@ const WorkoutForm = () => {
           .map((_, i) => (i + 1) * 2.5)}
         placeholder="Select a load"
         className={emptyFields.includes("load") ? "error w-full" : " w-full"}
+        data-testid="workout-load"
       />
 
-      <label>Number of Reps:</label>
+      <label className="block text-xl py-4">Number of Reps:</label>
       <Dropdown
         type="number"
         onChange={(e) => setReps(e.target.value)}
@@ -161,9 +171,10 @@ const WorkoutForm = () => {
           .map((_, i) => i + 1)}
         placeholder="Select number of reps"
         value={reps}
-        className={emptyFields.includes("load") ? "error w-full" : " w-full"}
+        className={emptyFields.includes("reps") ? "error w-full" : " w-full"}
+        data-testid="workout-reps"
       />
-      <label>Number of Sets:</label>
+      <label className="block text-xl py-4">Number of Sets:</label>
       <Dropdown
         type="number"
         onChange={(e) => setSets(e.target.value)}
@@ -172,12 +183,20 @@ const WorkoutForm = () => {
           .fill()
           .map((_, i) => (i + 1) * 1)}
         placeholder="Select number of sets"
-        className={emptyFields.includes("load") ? "error w-full" : " w-full"}
+        className={emptyFields.includes("sets") ? "error w-full" : " w-full"}
+        data-testid="workout-sets"
       />
-      <button className="bg-primary text-white p-4 font-poppins rounded-lg cursor-pointer mt-3 ">
+      <button
+        data-testid="add-workout"
+        className="bg-primary text-white p-4 font-poppins rounded-lg cursor-pointer mt-3 "
+      >
         <i className="pi  pi-plus"></i> Add Workout
       </button>
-      {error && <div className="error">{error}</div>}
+      {error && (
+        <div data-testid="error-message" className="errorDiv">
+          {error}
+        </div>
+      )}
     </form>
   );
 };

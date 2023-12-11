@@ -1,0 +1,488 @@
+{
+	"info": {
+		"_postman_id": "9d3a7a72-27c6-4745-a389-81c92b4b54fa",
+		"name": "MERN_APP",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "27611341"
+	},
+	"item": [
+		{
+			"name": "signIn",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							""
+						],
+						"type": "text/javascript"
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"let jsonData = pm.response.json();\r",
+							"pm.environment.set(\"jwt_token\", jsonData.token);"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"email\":\"oussemashabeni900@gmail.com\",\r\n    \"password\": \"Fnatic123#\",\r\n    \"username\":\"spike\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:4000/api/user/signup",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "4000",
+					"path": [
+						"api",
+						"user",
+						"signup"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "login",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							""
+						],
+						"type": "text/javascript"
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"let jsonData = pm.response.json();\r",
+							"pm.environment.set(\"jwt_token\", jsonData.token);"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"email\":\"oussemashabeni900@gmail.com\",\r\n    \"password\": \"Fnatic123#\"\r\n    \r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:4000/api/user/login",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "4000",
+					"path": [
+						"api",
+						"user",
+						"login"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "getWorkouts",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							"pm.request.headers.add({key: 'Authorization', value: 'Bearer ' + pm.environment.get(\"jwt_token\")});"
+						],
+						"type": "text/javascript"
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.request.headers.add({key: 'Authorization', value: 'Bearer ' + pm.environment.get(\"jwt_token\")});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NTVjYWRkMWE1NGZhYzY2NmM5NjNkMjUiLCJpYXQiOjE3MDIxNjIwNzUsImV4cCI6MTcwMjQyMTI3NX0.NT69Nkjewozh23B6liMRDlRUB5YihFev0DVJctPor6Y",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:4000/api/workouts",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "4000",
+					"path": [
+						"api",
+						"workouts"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Add Workout",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							""
+						],
+						"type": "text/javascript"
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.request.headers.add({key: 'Authorization', value: 'Bearer ' + pm.environment.get(\"jwt_token\")});\r",
+							"let jsonData = pm.response.json();\r",
+							"console.log(jsonData._id)\r",
+							"pm.environment.set(\"workout_id\", jsonData._id);"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NTVjYWRkMWE1NGZhYzY2NmM5NjNkMjUiLCJpYXQiOjE3MDIxNjIwNzUsImV4cCI6MTcwMjQyMTI3NX0.NT69Nkjewozh23B6liMRDlRUB5YihFev0DVJctPor6Y",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n   \"title\": \"Biceps\",\r\n    \"reps\": 2,\r\n    \"load\": 5,\r\n    \"sets\": 4,\r\n    \"user_id\": \"655cadd1a54fac666c963d25\"\r\n    \r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:4000/api/workouts",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "4000",
+					"path": [
+						"api",
+						"workouts"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "getWorkoutById",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							""
+						],
+						"type": "text/javascript"
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.request.headers.add({key: 'Authorization', value: 'Bearer ' + pm.environment.get(\"jwt_token\")});\r",
+							"let workoutId = pm.environment.get(\"workout_id\");\r",
+							"console.log(\"workout iD is\" ,workoutId)\r",
+							"pm.variables.set(\"workout_id\", workoutId);"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NTVjYWRkMWE1NGZhYzY2NmM5NjNkMjUiLCJpYXQiOjE3MDIxNjIwNzUsImV4cCI6MTcwMjQyMTI3NX0.NT69Nkjewozh23B6liMRDlRUB5YihFev0DVJctPor6Y",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:4000/api/workouts/{{workout_id}}",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "4000",
+					"path": [
+						"api",
+						"workouts",
+						"{{workout_id}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "updateWorkout",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							""
+						],
+						"type": "text/javascript"
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.request.headers.add({key: 'Authorization', value: 'Bearer ' + pm.environment.get(\"jwt_token\")});\r",
+							"let workoutId = pm.environment.get(\"workout_id\");\r",
+							"console.log(\"workout iD is\" ,workoutId)\r",
+							"pm.variables.set(\"workout_id\", workoutId);"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NTVjYWRkMWE1NGZhYzY2NmM5NjNkMjUiLCJpYXQiOjE3MDIxNjIwNzUsImV4cCI6MTcwMjQyMTI3NX0.NT69Nkjewozh23B6liMRDlRUB5YihFev0DVJctPor6Y",
+							"type": "string"
+						}
+					]
+				},
+				"method": "PATCH",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"title\": \"Biceps\",\r\n        \"reps\": 2,\r\n        \"load\": 5,\r\n        \"sets\": 4,\r\n        \"user_id\": \"655cadd1a54fac666c963d25\"\r\n    \r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:4000/api/workouts/{{workout_id}}",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "4000",
+					"path": [
+						"api",
+						"workouts",
+						"{{workout_id}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "deleteWorkout",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							""
+						],
+						"type": "text/javascript"
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.request.headers.add({key: 'Authorization', value: 'Bearer ' + pm.environment.get(\"jwt_token\")});\r",
+							"\r",
+							"let workoutId = pm.environment.get(\"workout_id\");\r",
+							"console.log(\"workout iD is\" ,workoutId)\r",
+							"pm.variables.set(\"workout_id\", workoutId);\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NTVjYWRkMWE1NGZhYzY2NmM5NjNkMjUiLCJpYXQiOjE3MDIxNjIwNzUsImV4cCI6MTcwMjQyMTI3NX0.NT69Nkjewozh23B6liMRDlRUB5YihFev0DVJctPor6Y",
+							"type": "string"
+						}
+					]
+				},
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:4000/api/workouts/{{workout_id}}",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "4000",
+					"path": [
+						"api",
+						"workouts",
+						"{{workout_id}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "bmi correct",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NTVjYWRkMWE1NGZhYzY2NmM5NjNkMjUiLCJpYXQiOjE3MDIxNjIwNzUsImV4cCI6MTcwMjQyMTI3NX0.NT69Nkjewozh23B6liMRDlRUB5YihFev0DVJctPor6Y",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n     \"height\": 160, \"weight\": 50, \"sex\": \"male\", \"age\": 21\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:4000/api/calculate/bmi",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "4000",
+					"path": [
+						"api",
+						"calculate",
+						"bmi"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "bmi wrong",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.request.headers.add({key: 'Authorization', value: 'Bearer ' + pm.environment.get(\"jwt_token\")});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NTVjYWRkMWE1NGZhYzY2NmM5NjNkMjUiLCJpYXQiOjE3MDIxNjIwNzUsImV4cCI6MTcwMjQyMTI3NX0.NT69Nkjewozh23B6liMRDlRUB5YihFev0DVJctPor6Y",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n     \"height\": 40, \"weight\": 50, \"sex\": \"male\", \"age\": 21\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:4000/api/calculate/bmi",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "4000",
+					"path": [
+						"api",
+						"calculate",
+						"bmi"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

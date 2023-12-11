@@ -19,7 +19,7 @@ export const loginUser = async (req, res) => {
     const user = await userModel.login(email, password);
     console.log(user);
     const token = createToken(user._id);
-    // console.log("token is " + token);
+    console.log("token is " + token);
     res.status(200).json({ email, token, username: user.username });
   } catch (err) {
     res.status(500).json({ message: err.message });
@@ -53,7 +53,7 @@ export const loginWithGoogle = async (req, res) => {
 
   const payload = ticket.getPayload();
 
-  console.log(payload);
+  //console.log(payload);
   const userid = payload["sub"];
 
   // Find the user in your MongoDB database
@@ -71,7 +71,7 @@ export const loginWithGoogle = async (req, res) => {
 
   // Create a JWT for the user
   const token = createToken(user._id);
-
+  console.log("token is " + token);
   //console.log(user.id, token);
 
   // Send the JWT back to the client

@@ -47,7 +47,7 @@ const Signup = () => {
         onSubmit={handleClick}
       >
         <h3>Sign up to Your Account</h3>
-        {error && <Message severity="error" text={error} />}
+        {error && <Message data-testid="error" severity="error" text={error} />}
 
         <div className=" input-container  mb-4">
           <label>
@@ -60,6 +60,8 @@ const Signup = () => {
               setUsername(e.target.value);
             }}
             value={username}
+            data-testid="username-input"
+            
           />
           <label>
             <span className="pi pi-envelope"></span> Email:
@@ -71,6 +73,7 @@ const Signup = () => {
               setEmail(e.target.value);
             }}
             value={email}
+            data-testid="email-input"
           />
         </div>
         <div className="input-container mb-4">
@@ -85,6 +88,7 @@ const Signup = () => {
             }}
             value={password}
             toggleMask
+            data-testid="password-input"
           />
           <label>
             <span className="pi pi-lock"></span> Confirm Password:
@@ -97,12 +101,14 @@ const Signup = () => {
             }}
             value={confirmPassword}
             toggleMask
+            data-testid="confirm-password-input"
           />
         </div>
         <Button
           disabled={isLoading}
           className="w-52 p-2 text-form_title shrink-0  bg-sky-500  rounded-full text-lg flex items-center justify-center border-blue-500 border-4 text-center hover:bg-violet-400"
           icon="pi pi-user-plus relative right-2"
+          data-testid="signup-button"
         >
           <span className="font-semibold mr-2">Sign Up</span>
         </Button>

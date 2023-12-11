@@ -13,7 +13,7 @@ const userSchema = new Schema(
     age: { type: Number },
     weight: { type: Number },
     height: { type: Number },
-    username: { type: String },
+    
     bmis: [
       {
         bmi: Number,

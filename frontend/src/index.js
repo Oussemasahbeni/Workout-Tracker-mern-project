@@ -13,12 +13,10 @@ const root = ReactDOM.createRoot(document.getElementById("root"));
 
 root.render(
   <GoogleOAuthProvider clientId={process.env.REACT_APP_ClIENT_ID}>
-    <React.StrictMode>
-      <AuthContextProvider>
-        <WorkoutContextProvider>
-          <App />
-        </WorkoutContextProvider>
-      </AuthContextProvider>
-    </React.StrictMode>
+    <AuthContextProvider>
+      <WorkoutContextProvider>
+        <App />
+      </WorkoutContextProvider>
+    </AuthContextProvider>
   </GoogleOAuthProvider>
 );

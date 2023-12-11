@@ -51,6 +51,8 @@ const BmiCalculator = () => {
 
     const bmiInfo = { height, weight, sex, age };
 
+    console.log(bmiInfo);
+
     try {
       const response = await axios.post(
         `http://localhost:4000/api/calculate/bmi`,
@@ -61,6 +63,8 @@ const BmiCalculator = () => {
           },
         }
       );
+
+      console.log(response);
 
       const bmiArray = response.data.bmis;
       const bmiValues = bmiArray.map((entry) => entry.bmi);
@@ -103,7 +107,7 @@ const BmiCalculator = () => {
         showInfo(response.data.bmi, response.data.bmiStatus);
       }
     } catch (error) {
-      console.log(error);
+      // console.log(error);
       setError(error.response.data.message);
     }
   };
@@ -119,15 +123,19 @@ const BmiCalculator = () => {
           BMI Calculator
         </h3>
         <label>Please enter your Height (in cm): </label>
-        <InputNumber
+        <input
           className="block"
+          type="number"
+          name="height"
           value={height}
-          onChange={(e) => setHeight(e.value)}
+          onChange={(e) => setHeight(e.target.value)}
         />
         <label>Please enter your Weight (in kg):</label>
-        <InputNumber
+        <input
           className="block"
-          onChange={(e) => setWeight(e.value)}
+          type="number"
+          name="weight"
+          onChange={(e) => setWeight(e.target.value)}
           value={weight}
         />
         <div className="flex flex-wrap gap-3">
@@ -136,6 +144,7 @@ const BmiCalculator = () => {
             <RadioButton
               inputId="ingredient1"
               name="male"
+              data-testid="sex"
               value="male"
               onChange={(e) => setSex(e.value)}
               checked={sex === "male"}
@@ -155,30 +164,37 @@ const BmiCalculator = () => {
         </div>
 
         <div className=" justify-center  items-center">
-          <label className="  mb-2">Please enter your age: </label>
+          <label className="mb-2">Please enter your age: </label>
           <InputNumber
             inputId="minmax-buttons"
             value={age}
+            name="age"
             className="w-2/12"
             onValueChange={(e) => setAge(e.value)}
-            mode="decimal"
-            min={1}
-            max={100}
+            // mode="decimal"
+            // min={1}
+            // max={100}
           />
         </div>
 
-        <button className="bg-primary text-white p-4 font-poppins rounded-lg cursor-pointer">
-          Submit
-        </button>
+        <div data-testid="btn" className="flex justify-center items-center">
+          <button className="bg-primary    text-white p-4 font-poppins rounded-lg cursor-pointer">
+            Submit
+          </button>
+        </div>
 
         {bmi && (
-          <div className="bg-slate-200 p-4 mt-2 rounded border-3">
-            Your Bmi is: <span className="font-bold">{bmi} </span>, Your result
-            suggests you are <span className="font-bold"> {bmiStatus}</span>
+          <div
+            data-bmiresult="bmi-result"
+            className="bg-slate-200 p-4 mt-2 rounded border-3"
+          >
+            Your Bmi is: <span className="font-bold ">{bmi} </span>, Your result
+            suggests you are{" "}
+            <span className="font-bold ml-2 "> {bmiStatus}</span>
             <Button
               label="Show bmi chart"
               type="button"
-              className="bg-lime-600 text-white p-1 font-poppins rounded-lg cursor-pointer"
+              className="bg-lime-600 text-white block  mr-4 p-2 font-poppins rounded-lg cursor-pointer "
               icon="pi pi-external-link"
               onClick={() => setVisible(true)}
             />
@@ -201,7 +217,7 @@ const BmiCalculator = () => {
             </Dialog>
           </div>
         )}
-        {error && <div className="error">{error}</div>}
+        {error && <div className="errorDiv">{error}</div>}
       </form>
 
       <div className=" mt-2 p-10 bg-blue-100 shadow-md rounded-3xl border-4">
