@@ -1,0 +1,27 @@
+{
+    "env": {
+        "node": true,
+        "es2021": true
+    },
+    "extends": "eslint:recommended",
+    "parserOptions": {
+        "ecmaVersion": 12,
+        "sourceType": "module"
+    },
+    "rules": {
+        "indent": ["error", 2], // enforce consistent indentation
+        "linebreak-style": ["error", "unix"], // enforce consistent linebreak style
+        "quotes": ["error", "single"], // enforce the consistent use of either backticks, double, or single quotes
+        "semi": ["error", "always"], // require or disallow semicolons instead of ASI
+        "no-unused-vars": ["error", { "vars": "all", "args": "after-used", "ignoreRestSiblings": false }], // disallow unused variables
+        "no-console": "warn", // disallow the use of console
+        "eqeqeq": ["error", "always"], // require the use of === and !==
+        "curly": "error", // enforce consistent brace style for all control statements
+        "camelcase": "error", // enforce camelcase naming convention
+        "no-trailing-spaces": "error", // disallow trailing whitespace at the end of lines
+        "comma-dangle": ["error", "never"], // disallow or enforce trailing commas
+        "max-len": ["error", { "code": 80 }], // enforce a maximum line length
+        "no-var": "error", // require let or const instead of var
+        "prefer-const": "error" // require const declarations for variables that are never reassigned after declared
+    }
+}

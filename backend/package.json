@@ -5,7 +5,7 @@
   "main": "server.js",
   "type": "module",
   "scripts": {
-    "test": "jest",
+    "test": "nyc node ",
     "start": "node server.js",
     "dev": "nodemon server.js"
   },
@@ -25,19 +25,23 @@
     "passport-google-oauth20": "^2.0.0",
     "validator": "^13.11.0"
   },
-  "jest": {
-    "transform": {},
-    "testMatch": [
-      "**/tests/**/*.cjs"
+  "nyc": {
+    "exclude": [
+      "**/node_modules/**",
+      "**/tests/**"
     ]
   },
   "devDependencies": {
     "@babel/core": "^7.23.5",
     "@babel/preset-env": "^7.23.5",
     "babel-jest": "^29.7.0",
+    "eslint": "^8.55.0",
+    "eslint-plugin-react": "^7.33.2",
     "jest": "^29.7.0",
+    "mocha": "^10.2.0",
     "mongodb-memory-server": "^9.1.1",
     "mongoose": "^8.0.2",
+    "nyc": "^15.1.0",
     "supertest": "^6.3.3"
   }
 }

@@ -4,7 +4,7 @@ import { useAuthContext } from "../hooks/useAuthContext";
 const LandingPage = () => {
   const { user } = useAuthContext();
   return (
-    <div className=" flex justify-center items-center  flex-col   ">
+    <div className=" flex justify-center items-center  flex-col   "> 
       <div className=" text-center  p-10 border-2 rounded-3xl bg-background bg-contain   ">
         <h1 className="leading-[50px] font-semibold md:leading-[60px] lg:leading-[80px] text-gray-950 tracking-[-1.4px] text-4xl md:text-6xl lg:text-7xl">
           The All-In-One Workout App for
