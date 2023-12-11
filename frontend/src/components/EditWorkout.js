@@ -35,6 +35,11 @@ const EditWorkout = ({ workout, onCloseDialog }) => {
       return;
     }
 
+    if (!load || !reps || !sets) {
+      setError("Please fill out all fields");
+      return;
+    }
+
     const updatedWorkout = { title, load, reps, sets };
 
     // console.log(updatedWorkout);
@@ -76,6 +81,7 @@ const EditWorkout = ({ workout, onCloseDialog }) => {
       <InputText
         type="text"
         required
+        name="title"
         value={title}
         disabled
         onChange={(e) => setTitle(e.target.value)}
@@ -83,6 +89,7 @@ const EditWorkout = ({ workout, onCloseDialog }) => {
       <label>Load (in kg):</label>
       <InputText
         type="number"
+        name="load"
         onChange={(e) => setLoad(e.target.value)}
         value={load}
       />
@@ -90,19 +97,24 @@ const EditWorkout = ({ workout, onCloseDialog }) => {
       <label>Number of Reps:</label>
       <InputText
         type="number"
+        name="reps"
         onChange={(e) => setReps(e.target.value)}
         value={reps}
       />
       <label>Number of Sets:</label>
       <InputText
         type="number"
+        name="sets"
         onChange={(e) => setSets(e.target.value)}
         value={sets}
       />
-      <button className="bg-primary text-white p-4 font-poppins rounded-lg cursor-pointer">
+      <button
+        data-testid="submit"
+        className="bg-primary text-white p-4 font-poppins rounded-lg cursor-pointer"
+      >
         Edit Workout
       </button>
-      {error && <div className="error">{error}</div>}
+      {error && <div className="errorDiv">{error}</div>}
     </form>
   );
 };

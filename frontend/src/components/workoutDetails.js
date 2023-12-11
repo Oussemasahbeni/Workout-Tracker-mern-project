@@ -32,7 +32,6 @@ const WorkoutDetails = ({ workout }) => {
         },
       }
     );
-    // const result = response.data;
 
     if (response.status === 200) {
       const result = response.data;
@@ -41,6 +40,7 @@ const WorkoutDetails = ({ workout }) => {
   };
 
   const reject = () => {
+    console.log(toast);
     toast.current.show({
       severity: "warn",
       summary: "Rejected",
@@ -55,6 +55,7 @@ const WorkoutDetails = ({ workout }) => {
 
   const handleAccept = async () => {
     await handleDelete();
+
     setDialogVisible(false);
   };
 
@@ -74,10 +75,14 @@ const WorkoutDetails = ({ workout }) => {
     setVisible(false);
   };
   return (
-    <div className="bg-header_bg rounded mx-auto my-5 p-5 relative shadow-md">
+    <div
+      data-testid="workout-list"
+      className="bg-header_bg rounded mx-auto my-5 p-5 relative shadow-md"
+    >
       <Toast ref={toast} />
       <ConfirmDialog
         visible={dialogVisible}
+        data-test="delete-dialog"
         onHide={() => setDialogVisible(false)}
         message="Do you want to delete this workout?"
         header="Delete Confirmation"
@@ -119,18 +124,21 @@ const WorkoutDetails = ({ workout }) => {
       <Button
         className="material-symbols-outlined absolute top-4 right-4 cursor-pointer bg-gray-200 p-2 rounded-full text-gray-700"
         onClick={handleClick}
+        data-testid="delete-button"
       >
         Delete
       </Button>
       <Button
         className="material-symbols-outlined absolute top-16 right-4 cursor-pointer bg-gray-200 p-2 rounded-full text-gray-700"
         onClick={handleEdit}
+        data-testid="edit-button"
       >
         Edit
       </Button>
 
       <Dialog
         visible={visible}
+        data-testid="edit-dialog"
         style={{ width: "50vw" }}
         onHide={() => setVisible(false)}
       >

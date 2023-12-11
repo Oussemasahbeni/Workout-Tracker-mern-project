@@ -13,11 +13,12 @@ export const calculateBMI = async (req, res) => {
     return res
       .status(400)
       .json({ message: "Please enter a valid height in centimeters." });
-  if (!weight || weight < 2 || weight > 500)
+  if (!weight || weight < 2 || weight > 600)
     return res
       .status(400)
       .json({ message: "Please enter a valid weight in kilograms." });
-  if (!age) return res.status(400).json({ message: "Please enter your age ." });
+  if (!age || age < 0)
+    return res.status(400).json({ message: "Please enter your age ." });
 
   const bmi = parseFloat((weight / (height / 100) ** 2).toFixed(2));
   let bmiStatus = "";

@@ -18,6 +18,8 @@ export const getWorkouts = async (req, res) => {
 // get one workout
 export const getWorkout = async (req, res) => {
   const { id } = req.params;
+
+  console.log(id);
   try {
     if (!mongoose.Types.ObjectId.isValid(id))
       return res.status(400).json({ message: "Invalid workout ID" });
@@ -40,6 +42,8 @@ export const createWorkout = async (req, res) => {
   if (!load) emptyFields.push("load");
   if (!reps) emptyFields.push("reps");
   if (!sets) emptyFields.push("sets");
+
+  console.log(emptyFields);
   if (emptyFields.length > 0) {
     return res
       .status(400)

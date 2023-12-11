@@ -35,8 +35,13 @@ input {
   @apply p-3 mt-4 mb-8 w-full  border-blue-600 border-2 rounded-lg;
 } 
 
+
+
 div.error {
-  @apply p-4 bg-red-200 border border-error text-error rounded-md my-5  ;
+  @apply  bg-red-200 border border-error text-error rounded-md my-5  ;
+}
+div.errorDiv {
+  @apply  p-4 bg-red-200 border border-error text-error rounded-md my-5  ;
 }
 input.error {
   @apply border border-error ;
