@@ -81,7 +81,6 @@ const Login = () => {
           <span> OR SIGN IN WITH GOOGLE</span>
           <GoogleLogin
             className="bg-red ma"
-            
             onSuccess={responseMessage}
             onError={errorMessage}
             useOneTap

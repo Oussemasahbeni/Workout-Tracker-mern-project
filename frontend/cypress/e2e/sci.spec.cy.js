@@ -1,8 +1,19 @@
 /* eslint-disable testing-library/await-async-utils */
 /* eslint-disable no-undef */
-//import { slowCypressDown } from "cypress-slow-down";
 
-// slowCypressDown(1000);
+// Function to perform login
+const login = () => {
+  cy.visit("/login");
+  cy.get('[data-testid="email-input"]').type("test@gmail.com");
+  cy.get('[data-testid="password-input"]').type("TestTest123#");
+  cy.get('button[type="submit"]').click();
+};
+
+// Login once before the entire test suite
+before(() => {
+  login();
+});
+
 describe("whole use cases", () => {
   it("should navigate to the signup page from the landing page", () => {
     cy.visit("/");
@@ -137,8 +148,7 @@ describe("whole use cases", () => {
       cy.get('[data-testid="email-input"]').type("test@gmail.com");
       cy.get('[data-testid="password-input"]').type("TestTest123#");
       cy.get('button[type="submit"]').click();
-
-      // Navigate to the add workout page
+      // Navigate to the add workout page if needed
       // cy.get('[data-testid="add-workout"]').click();
     });
 
@@ -241,13 +251,10 @@ describe("whole use cases", () => {
       cy.get('[data-testid="workout-list"]').should("contain", "Barbell Curl");
     });
   });
+
   describe("EditWorkout", () => {
     beforeEach(() => {
-      // Log in first
-      cy.visit("/login");
-      cy.get('[data-testid="email-input"]').type("test@gmail.com");
-      cy.get('[data-testid="password-input"]').type("TestTest123#");
-      cy.get('button[type="submit"]').click();
+      // No need to log in again, as it's already done in the 'before' hook
     });
 
     it("should edit a workout successfully", () => {
@@ -309,11 +316,7 @@ describe("whole use cases", () => {
 
   describe("WorkoutDetails", () => {
     beforeEach(() => {
-      // Log in first
-      cy.visit("/login");
-      cy.get('[data-testid="email-input"]').type("test@gmail.com");
-      cy.get('[data-testid="password-input"]').type("TestTest123#");
-      cy.get('button[type="submit"]').click();
+      // No need to log in again, as it's already done in the 'before' hook
     });
 
     it("should delete a workout successfully if it exists", () => {
@@ -338,11 +341,11 @@ describe("whole use cases", () => {
 
   describe("BMI Calculator", () => {
     beforeEach(() => {
-      // Log in first
-      cy.visit("/login");
-      cy.get('[data-testid="email-input"]').type("test@gmail.com");
-      cy.get('[data-testid="password-input"]').type("TestTest123#");
-      cy.get('button[type="submit"]').click();
+      //   // Log in first
+      //   cy.visit("/login");
+      //   cy.get('[data-testid="email-input"]').type("test@gmail.com");
+      //   cy.get('[data-testid="password-input"]').type("TestTest123#");
+      //   cy.get('button[type="submit"]').click();
     });
 
     it("should navigate to the BMI calculator", () => {
