@@ -50,11 +50,32 @@ This is a full-stack MERN (MongoDB, Express.js, React, Node.js) project that all
     ```bash
     # Run server
     cd backend
-    npm start
+    npm run dev
 
     # Run client
     cd frontend
     npm start
+    ```
+
+5. **Run the tests:**
+
+    ```bash
+    # E2E testind and component testing
+    cd frontend
+    npm test  or npx cypress
+
+
+    # Integarion testing
+    cd frontend
+    newman run MERN_APP.postman_collection.json
+
+    # Static Testing
+     cd frontend or cd backend
+     npx eslint .
+
+    #load testing :
+     cd frontend
+     artillery run loadtest.yml
     ```
 
 5. **Open your browser and go to [http://localhost:3000](http://localhost:3000) to view the application.**
