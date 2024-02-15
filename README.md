@@ -205,7 +205,7 @@ I extend my sincere appreciation to the following tools, libraries, and resource
 - <a href="https://www.mongodb.com/">MongoDB</a>: The flexible and scalable NoSQL database that stores our data.
 - <a href="https://github.com/">GitHub</a>: The platform that facilitates collaborative coding and version control.
 - <a href="https://www.cypress.io/">Cypress</a>: The end-to-end testing framework ensuring the reliability of our application.
-- <a href="https://primereact.org/">PrimeNG</a>: The UI component library for react that enhances the aesthetics and functionality of our user interface.
+- <a href="https://primereact.org/">PrimeReact</a>: The UI component library for react that enhances the aesthetics and functionality of our user interface.
 
 > These tools and resources have played a crucial role in bringing our vision to fruition. We express our gratitude to the dedicated individuals behind these projects and the broader open-source community. 🙌
 
